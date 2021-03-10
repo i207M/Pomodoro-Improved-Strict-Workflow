@@ -29,7 +29,12 @@ function defaultPrefs() {
       'kongregate.com',
       'newgrounds.com',
       'addictinggames.com',
-      'hulu.com'
+      'hulu.com',
+      'bilibili.com',
+      'youku.com',
+      'steampowered.com',
+      'steamdb.info',
+      'epicgames.com'
     ],
     durations: { // in seconds
       work: 25 * 60,
@@ -39,7 +44,9 @@ function defaultPrefs() {
     shouldRing: true,
     clickRestarts: false,
     whitelist: false,
-    short_break_counter: 0
+    short_break_counter: 0,
+    sessions: {},
+    goal: 16
   }
 }
 
@@ -311,9 +318,11 @@ function setModes(self) {
     if (PREFS.short_break_counter >= 3) {
       self.nextMode = 'long_break';
       setShortBreakCounter(0);
+      console.log('Start long break.');
     } else {
       self.nextMode = 'break';
       setShortBreakCounter(PREFS.short_break_counter + 1);
+      console.log('Start break.', short_break_counter);
     }
   } else {
     self.nextMode = 'work';
@@ -329,6 +338,16 @@ var notification, mainPomodoro = new Pomodoro({
   getDurations: function () { return PREFS.durations },
   timer: {
     onEnd: function (timer) {
+      console.log("Finished working.")
+      key = new Date().toDateString()
+      if (timer.type == "work") {
+        if (PREFS.sessions[key]) {
+          PREFS.sessions[key] += 1
+        } else {
+          PREFS.sessions[key] = 1
+        }
+        savePrefs(PREFS)
+      }
       chrome.browserAction.setIcon({
         path: ICONS.ACTION.PENDING[this.getIconMode(timer.pomodoro.nextMode)]
       });
@@ -399,6 +418,17 @@ function startPomodoro() {
   }
 }
 
+function session_count() {
+  key = new Date().toDateString()
+  if (PREFS.sessions[key])
+    return PREFS.sessions[key]
+  else
+    return 0;
+}
+
+function goal() {
+  return PREFS.goal
+}
 
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
   if (mainPomodoro.mostRecentMode == 'work') {
