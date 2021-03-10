@@ -340,7 +340,7 @@ var notification, mainPomodoro = new Pomodoro({
     onEnd: function (timer) {
       console.log("Finished working.")
       key = new Date().toDateString()
-      if (timer.type == "work") {
+      if (timer.type == "work" && timer.timeRemaining > -16) {
         if (PREFS.sessions[key]) {
           PREFS.sessions[key] += 1
         } else {
@@ -446,7 +446,7 @@ chrome.notifications.onClicked.addListener(function (id) {
 
 var skipMode = function (e) {
   if (mainPomodoro.running) {
-    mainPomodoro.currentTimer.timeRemaining = -1;
+    mainPomodoro.currentTimer.timeRemaining = -16;
   } else {
     setModes(this);
     var mostRecentMode = mainPomodoro.mostRecentMode;
