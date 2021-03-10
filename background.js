@@ -7,7 +7,7 @@ var PREFS = loadPrefs(),
   BADGE_BACKGROUND_COLORS = {
     work: [192, 0, 0, 255],
     break: [0, 192, 0, 255],
-    long_break: [0, 162, 232, 255]
+    long_break: [0, 192, 0, 255]
   }, RING = new Audio("ring.ogg"),
   ringLoaded = false;
 
@@ -315,6 +315,7 @@ function setModes(self) {
     self.mostRecentMode = 'break';
     self.nextMode = 'work';
   } else if (self.mostRecentMode == 'work') {
+    // console.log(PREFS.short_break_counter);
     if (PREFS.short_break_counter >= 3) {
       self.nextMode = 'long_break';
       setShortBreakCounter(0);
@@ -322,7 +323,7 @@ function setModes(self) {
     } else {
       self.nextMode = 'break';
       setShortBreakCounter(PREFS.short_break_counter + 1);
-      console.log('Start break.', short_break_counter);
+      console.log('Start break.', PREFS.short_break_counter);
     }
   } else {
     self.nextMode = 'work';
@@ -338,9 +339,9 @@ var notification, mainPomodoro = new Pomodoro({
   getDurations: function () { return PREFS.durations },
   timer: {
     onEnd: function (timer) {
-      console.log("Finished working.")
       key = new Date().toDateString()
       if (timer.type == "work" && timer.timeRemaining > -16) {
+        console.log("Finished working.")
         if (PREFS.sessions[key]) {
           PREFS.sessions[key] += 1
         } else {
@@ -404,9 +405,12 @@ var notification, mainPomodoro = new Pomodoro({
   }
 });
 
-chrome.browserAction.onClicked.addListener(function (tab) {
+// chrome.browserAction.onClicked.addListener(function (tab) {
+//   startPomodoro();
+// });
+function clicked() {
   startPomodoro();
-});
+}
 
 function startPomodoro() {
   if (mainPomodoro.running) {
