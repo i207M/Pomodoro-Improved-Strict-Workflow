@@ -354,7 +354,7 @@ var notification, mainPomodoro = new Pomodoro({
         savePrefs(PREFS)
       }
       chrome.browserAction.setIcon({
-        path: ICONS.ACTION.PENDING[this.getIconMode(timer.pomodoro.nextMode)]
+        path: ICONS.ACTION.PENDING[getIconMode(timer.pomodoro.nextMode)]
       });
       chrome.browserAction.setBadgeText({ text: '' });
 
@@ -366,7 +366,7 @@ var notification, mainPomodoro = new Pomodoro({
           message: chrome.i18n.getMessage("timer_end_notification_body",
             nextModeName),
           priority: 2,
-          iconUrl: ICONS.FULL[this.getIconMode(timer.pomodoro.nextMode)]
+          iconUrl: ICONS.FULL[getIconMode(timer.pomodoro.nextMode)]
         }, function () { });
         chrome.notifications.onClicked.addListener(function () {
           startPomodoro();
@@ -381,10 +381,10 @@ var notification, mainPomodoro = new Pomodoro({
     },
     onStart: function (timer) {
       chrome.browserAction.setIcon({
-        path: ICONS.ACTION.CURRENT[this.getIconMode(timer.type)]
+        path: ICONS.ACTION.CURRENT[getIconMode(timer.type)]
       });
       chrome.browserAction.setBadgeBackgroundColor({
-        color: BADGE_BACKGROUND_COLORS[this.getIconMode(timer.type)]
+        color: BADGE_BACKGROUND_COLORS[getIconMode(timer.type)]
       });
       if (timer.type == 'work') {
         executeInAllBlockedTabs('block');
@@ -402,12 +402,13 @@ var notification, mainPomodoro = new Pomodoro({
     },
     onTick: function (timer) {
       chrome.browserAction.setBadgeText({ text: timer.timeRemainingString() });
-    },
-    getIconMode: function (timerState) {
-      return timerState == 'work' ? 'work' : 'break';
     }
   }
 });
+
+function getIconMode(timerState) {
+  return timerState == 'work' ? 'work' : 'break';
+}
 
 chrome.browserAction.onClicked.addListener(function (tab) {
   startPomodoro();
@@ -458,16 +459,16 @@ chrome.notifications.onClicked.addListener(function (id) {
   });
 });
 
-var skipMode = function (e) {
+var skipMode = function () {
   if (mainPomodoro.running) {
     mainPomodoro.currentTimer.timeRemaining = -16;
   } else {
-    setModes(this);
+    setModes(mainPomodoro);
     var mostRecentMode = mainPomodoro.mostRecentMode;
     mainPomodoro.mostRecentMode = mainPomodoro.nextMode;
     mainPomodoro.nextMode = mostRecentMode;
     chrome.browserAction.setIcon({
-      path: ICONS.ACTION.PENDING[this.getIconMode(mainPomodoro.nextMode)]
+      path: ICONS.ACTION.PENDING[getIconMode(mainPomodoro.nextMode)]
     });
     chrome.browserAction.setBadgeText({ text: '' });
   }
