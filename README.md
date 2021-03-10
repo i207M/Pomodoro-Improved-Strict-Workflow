@@ -6,6 +6,7 @@ Based on [matchu](https://github.com/matchu)/[Strict-Workflow](https://github.co
 
 ## Features
 
+- Blacklist or whitelist
 - Long-short break（Thanks [cori](https://github.com/matchu/Strict-Workflow/pull/25)）
 - Jump current timer
 - Auto start if click on notification（Thanks [pedrogalv](https://github.com/matchu/Strict-Workflow/pull/65)）
@@ -20,6 +21,7 @@ Based on [matchu](https://github.com/matchu)/[Strict-Workflow](https://github.co
 
 ## 功能
 
+- 黑名单/白名单
 - 长短休息（Thanks [cori](https://github.com/matchu/Strict-Workflow/pull/25)）
 - 跳过当前阶段
 - 点击通知自动启动（Thanks [pedrogalv](https://github.com/matchu/Strict-Workflow/pull/65)）
