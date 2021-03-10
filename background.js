@@ -7,7 +7,7 @@ var PREFS = loadPrefs(),
   BADGE_BACKGROUND_COLORS = {
     work: [192, 0, 0, 255],
     break: [0, 192, 0, 255],
-    long_break: [0, 192, 0, 255]
+    long_break: [0, 162, 232, 255]
   }, RING = new Audio("ring.ogg"),
   ringLoaded = false;
 
@@ -312,7 +312,7 @@ function setModes(self) {
       self.nextMode = 'long_break';
       setShortBreakCounter(0);
     } else {
-      self.nextMode = 'short_break';
+      self.nextMode = 'break';
       setShortBreakCounter(PREFS.short_break_counter + 1);
     }
   } else {
@@ -357,10 +357,10 @@ var notification, mainPomodoro = new Pomodoro({
     },
     onStart: function (timer) {
       chrome.browserAction.setIcon({
-        path: ICONS.ACTION.CURRENT[this.getIconMode(timer.pomodoro.mostRecentMode)]
+        path: ICONS.ACTION.CURRENT[this.getIconMode(timer.type)]
       });
       chrome.browserAction.setBadgeBackgroundColor({
-        color: BADGE_BACKGROUND_COLORS[timer.type]
+        color: BADGE_BACKGROUND_COLORS[this.getIconMode(timer.type)]
       });
       if (timer.type == 'work') {
         executeInAllBlockedTabs('block');
