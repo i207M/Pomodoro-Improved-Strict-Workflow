@@ -16,9 +16,9 @@ Based on [matchu](https://github.com/matchu)/[Strict-Workflow](https://github.co
 
 实践番茄工作法：工作时屏蔽浪费时间的网站，休息时允许访问。
 
-Based on [matchu](https://github.com/matchu)/[Strict-Workflow](https://github.com/matchu/Strict-Workflow).
+基于 [matchu](https://github.com/matchu)/[Strict-Workflow](https://github.com/matchu/Strict-Workflow).
 
-## Features
+## 功能
 
 - 长短休息（Thanks [cori](https://github.com/matchu/Strict-Workflow/pull/25)）
 - 跳过当前阶段
@@ -28,4 +28,4 @@ Based on [matchu](https://github.com/matchu)/[Strict-Workflow](https://github.co
 
 ## TODO
 
-- 数据清除
+- You tell me
