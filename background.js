@@ -335,11 +335,15 @@ function setShortBreakCounter(newVal) {
   PREFS.short_break_counter = newVal;
 }
 
+function date2string(date) {
+  return date.toISOString().substring(0, 10)
+}
+
 var notification, mainPomodoro = new Pomodoro({
   getDurations: function () { return PREFS.durations },
   timer: {
     onEnd: function (timer) {
-      key = new Date().toLocaleDateString()
+      key = date2string(new Date())
       if (timer.type == "work" && timer.timeRemaining > -16) {
         console.log("Finished working.")
         if (PREFS.sessions[key]) {
@@ -423,7 +427,7 @@ function startPomodoro() {
 }
 
 function session_count() {
-  key = new Date().toDateString()
+  key = date2string(new Date())
   if (PREFS.sessions[key])
     return PREFS.sessions[key]
   else
@@ -432,8 +436,8 @@ function session_count() {
 
 function session_clear(key) {
   if (key === undefined)
-    key = new Date().toLocaleDateString()
-  return delete PREFS.sessions.key
+    key = date2string(new Date())
+  return delete PREFS.sessions[key]
 }
 
 function goal() {
