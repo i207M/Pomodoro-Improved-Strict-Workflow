@@ -339,7 +339,7 @@ var notification, mainPomodoro = new Pomodoro({
   getDurations: function () { return PREFS.durations },
   timer: {
     onEnd: function (timer) {
-      key = new Date().toDateString()
+      key = new Date().toLocaleDateString()
       if (timer.type == "work" && timer.timeRemaining > -16) {
         console.log("Finished working.")
         if (PREFS.sessions[key]) {
@@ -432,7 +432,7 @@ function session_count() {
 
 function session_clear(key) {
   if (key === undefined)
-    key = new Date().toDateString()
+    key = new Date().toLocaleDateString()
   return delete PREFS.sessions.key
 }
 

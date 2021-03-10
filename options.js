@@ -132,8 +132,8 @@ startCallbacks.long_break = function () {
 
 var daily_count = document.getElementById("daily_count")
 var count_str = JSON.stringify(background.PREFS.sessions)
-count_str = count_str.substring(1, count_str.length - 1).replace(',', '<br>')
-daily_count.innerHTML = count_str
+count_list = count_str.substring(1, count_str.length - 1).replace(/"/g, '').replace(/:/g, ': ').split(',').sort().join('<br>')
+daily_count.innerHTML = count_list
 
 if (background.mainPomodoro.mostRecentMode == 'work') {
   startCallbacks.work();
