@@ -405,12 +405,12 @@ var notification, mainPomodoro = new Pomodoro({
   }
 });
 
-// chrome.browserAction.onClicked.addListener(function (tab) {
-//   startPomodoro();
-// });
-function clicked() {
+chrome.browserAction.onClicked.addListener(function (tab) {
   startPomodoro();
-}
+});
+// function clicked() {
+//   startPomodoro();
+// }
 
 function startPomodoro() {
   if (mainPomodoro.running) {
@@ -428,6 +428,12 @@ function session_count() {
     return PREFS.sessions[key]
   else
     return 0;
+}
+
+function session_clear(key) {
+  if (key === undefined)
+    key = new Date().toDateString()
+  return delete PREFS.sessions.key
 }
 
 function goal() {
