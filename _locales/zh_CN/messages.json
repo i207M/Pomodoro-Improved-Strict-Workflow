@@ -23,6 +23,10 @@
     "message": "分钟",
     "description": "The name of the time interval representing 60 seconds"
   },
+  "goal": {
+    "message": "目标",
+    "description": "The daily goal"
+  },
   "site_blocked_info": {
     "message": "页面在休息时间开始前被屏蔽。",
     "description": "Text for the blocked-site overlay, explaining that the site is blocked and when it will become unblocked"
