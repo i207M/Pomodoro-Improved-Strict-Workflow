@@ -293,7 +293,7 @@ function executeInTabIfBlocked(action, tab) {
   location = tab.url.split('://');
   location = parseLocation(location[1]);
 
-  if (isLocationBlocked(location)) {
+  if (location.domain !== '' && isLocationBlocked(location)) {
     chrome.tabs.executeScript(tab.id, { file: file });
   }
 }
