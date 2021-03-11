@@ -35,6 +35,7 @@ var form = document.getElementById('options-form'),
 durationEls['work'] = document.getElementById('work-duration');
 durationEls['break'] = document.getElementById('break-duration');
 durationEls['long_break'] = document.getElementById('long-break-duration');
+element_goal = document.getElementById('goal')
 
 var TIME_REGEX = /^([0-9]+)(:([0-9]{2}))?$/;
 
@@ -113,6 +114,7 @@ function setInputDisabled(state) {
   for (var key in durationEls) {
     durationEls[key].disabled = state;
   }
+  element_goal.disabled = state
 }
 
 startCallbacks.work = function () {
