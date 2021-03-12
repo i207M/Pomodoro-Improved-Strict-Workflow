@@ -43,7 +43,6 @@ function defaultPrefs() {
     shouldRing: true,
     clickRestarts: false,
     whitelist: false,
-    short_break_counter: 0,
     sessions: {},
     goal: 16
   }
@@ -79,12 +78,6 @@ function updatePrefsFormat(prefs) {
     prefs.showNotifications = true;
     savePrefs(prefs);
     console.log("Added PREFS.showNotifications");
-  }
-
-  if (!prefs.hasOwnProperty('short_break_counter')) {
-    //  adding the short_break_counter, so if it's not set we need to set it to 0
-    prefs.short_break_counter = 0;
-    savePrefs(prefs);
   }
 
   if (!prefs.hasOwnProperty('goal')) {
@@ -141,9 +134,10 @@ for (var i in iconTypeS) {
 */
 
 function Pomodoro(options) {
-  this.mostRecentMode = '';
+  this.mostRecentMode = 'break';
   this.nextMode = 'work';
   this.running = false;
+  this.short_break_counter = 0;
 
   this.onTimerEnd = function (timer) {
     this.running = false;
@@ -312,26 +306,25 @@ function executeInAllBlockedTabs(action) {
 function setModes(self) {
 
   function setShortBreakCounter(newVal) {
-    PREFS.short_break_counter = newVal;
+    self.short_break_counter = newVal;
   }
 
-  if (self.mostRecentMode == '') {   //  initial
-    self.mostRecentMode = 'break';
-    self.nextMode = 'work';
-  } else if (self.mostRecentMode == 'work') {
-    // console.log(PREFS.short_break_counter);
-    if (PREFS.short_break_counter >= 3) {
+  if (typeof self.short_break_counter === 'undefined')
+    self.short_break_counter = 0;
+
+  if (self.mostRecentMode == 'work') {
+    if (self.short_break_counter >= 3) {
       self.nextMode = 'long_break';
       setShortBreakCounter(0);
       console.log('Start long break.');
     } else {
       self.nextMode = 'break';
-      setShortBreakCounter(PREFS.short_break_counter + 1);
-      console.log('Start break.', PREFS.short_break_counter);
+      setShortBreakCounter(self.short_break_counter + 1);
+      console.log('Start break.', self.short_break_counter);
     }
   } else {
     self.nextMode = 'work';
-    self.mostRecentMode = PREFS.short_break_counter >= 3 ? 'long_break' : 'break';
+    self.mostRecentMode = self.short_break_counter >= 3 ? 'long_break' : 'break';
   }
 }
 
