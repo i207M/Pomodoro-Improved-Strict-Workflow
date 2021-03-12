@@ -2,13 +2,15 @@
 
 A Chrome/Edge extension that helps you stay focused by blocking sites during work timers and letting you browse during break timers.
 
+It will be published to Microsoft Edge Addons store soon. [Link](https://microsoftedge.microsoft.com/addons/detail/aglnejhljfcgffkmhafficfaejjbcnji)(State: In review)
+
 Based on [matchu](https://github.com/matchu)/[Strict-Workflow](https://github.com/matchu/Strict-Workflow).
 
 ## Features
 
 - Blacklist or whitelist
 - Long-short break（Thanks [cori](https://github.com/matchu/Strict-Workflow/pull/25)）
-- Jump current timer
+- Skip current timer
 - Auto start if click on notification（Thanks [pedrogalv](https://github.com/matchu/Strict-Workflow/pull/65)）
 - Set daily goal
 - Statistics（Thanks [karthickpdy](https://github.com/matchu/Strict-Workflow/pull/61)）
