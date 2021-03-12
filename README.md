@@ -10,7 +10,6 @@ Based on [matchu](https://github.com/matchu)/[Strict-Workflow](https://github.co
 
 - Blacklist or whitelist
 - Long-short break（Thanks [cori](https://github.com/matchu/Strict-Workflow/pull/25)）
-- Skip current timer
 - Auto start if click on notification（Thanks [pedrogalv](https://github.com/matchu/Strict-Workflow/pull/65)）
 - Set daily goal
 - Statistics（Thanks [karthickpdy](https://github.com/matchu/Strict-Workflow/pull/61)）
@@ -25,7 +24,6 @@ Based on [matchu](https://github.com/matchu)/[Strict-Workflow](https://github.co
 
 - 黑名单/白名单
 - 长短休息（Thanks [cori](https://github.com/matchu/Strict-Workflow/pull/25)）
-- 跳过当前阶段
 - 点击通知自动启动（Thanks [pedrogalv](https://github.com/matchu/Strict-Workflow/pull/65)）
 - 设定目标
 - 数据统计（Thanks [karthickpdy](https://github.com/matchu/Strict-Workflow/pull/61)）
@@ -33,4 +31,3 @@ Based on [matchu](https://github.com/matchu)/[Strict-Workflow](https://github.co
 ## TODO
 
 - Background music
-- Disable skipping timer during working.

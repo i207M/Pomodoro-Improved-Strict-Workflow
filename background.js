@@ -31,7 +31,6 @@ function defaultPrefs() {
       'addictinggames.com',
       'hulu.com',
       'bilibili.com',
-      'youku.com',
       'steampowered.com',
       'steamdb.info',
       'epicgames.com'
@@ -88,11 +87,11 @@ function updatePrefsFormat(prefs) {
     savePrefs(prefs);
   }
 
-  // if(!prefs.durations.hasOwnProperty('short_break')) {
-  //   prefs.durations.short_break = prefs.durations.break;
-  //   prefs.durations.break = null;
-  //   savePrefs(prefs);
-  // }
+  if (!prefs.hasOwnProperty('goal')) {
+    //  adding the goal, so if it's not set we need to set it to 16
+    prefs.goal = 16;
+    savePrefs(prefs);
+  }
 
   return prefs;
 }
@@ -111,9 +110,9 @@ function setPrefs(prefs) {
 function loadRingIfNecessary() {
   console.log('is ring necessary?');
   if (PREFS.shouldRing && !ringLoaded) {
-    console.log('ring is necessary');
+    console.log('ring is necessary.');
     RING.onload = function () {
-      console.log('ring loaded');
+      console.log('ring loaded.');
       ringLoaded = true;
     }
     RING.load();
@@ -311,6 +310,11 @@ function executeInAllBlockedTabs(action) {
 }
 
 function setModes(self) {
+
+  function setShortBreakCounter(newVal) {
+    PREFS.short_break_counter = newVal;
+  }
+
   if (self.mostRecentMode == '') {   //  initial
     self.mostRecentMode = 'break';
     self.nextMode = 'work';
@@ -329,10 +333,6 @@ function setModes(self) {
     self.nextMode = 'work';
     self.mostRecentMode = PREFS.short_break_counter >= 3 ? 'long_break' : 'break';
   }
-}
-
-function setShortBreakCounter(newVal) {
-  PREFS.short_break_counter = newVal;
 }
 
 function date2string(date) {
@@ -413,9 +413,6 @@ function getIconMode(timerState) {
 chrome.browserAction.onClicked.addListener(function (tab) {
   startPomodoro();
 });
-// function clicked() {
-//   startPomodoro();
-// }
 
 function startPomodoro() {
   if (mainPomodoro.running) {
@@ -436,7 +433,7 @@ function session_count() {
 }
 
 function session_clear(key) {
-  if (key === undefined)
+  if (typeof key === 'undefined')
     key = date2string(new Date())
   return delete PREFS.sessions[key]
 }
@@ -459,7 +456,15 @@ chrome.notifications.onClicked.addListener(function (id) {
   });
 });
 
+function isworking(pomodoro) {
+  return (pomodoro.mostRecentMode == 'work' && pomodoro.running) || (pomodoro.mostRecentMode != 'work' && !pomodoro.running)
+}
+
 var skipMode = function () {
+  if (isworking(mainPomodoro)) {
+    console.log('skip failed: working time')
+    return;
+  }
   if (mainPomodoro.running) {
     mainPomodoro.currentTimer.timeRemaining = -16;
   } else {

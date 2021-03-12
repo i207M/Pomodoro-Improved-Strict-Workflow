@@ -106,7 +106,7 @@
     }
   },
   "skip": {
-    "message": "Skip this!",
+    "message": "Start working!",
     "description": "Skip this mode and jump to next"
   }
 }

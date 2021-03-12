@@ -106,7 +106,7 @@
     }
   },
   "skip": {
-    "message": "跳过此阶段！",
+    "message": "开始工作！",
     "description": "Skip this mode and jump to next"
   }
 }
