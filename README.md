@@ -1,8 +1,8 @@
 # Pomodoro-Improved
 
-A Chrome/Edge extension that helps you stay focused by blocking sites during work timers and letting you browse during break timers.
+[on Microsoft Edge Addons store](https://microsoftedge.microsoft.com/addons/detail/aglnejhljfcgffkmhafficfaejjbcnji)
 
-It will be published to Microsoft Edge Addons store soon. [Link](https://microsoftedge.microsoft.com/addons/detail/aglnejhljfcgffkmhafficfaejjbcnji)(State: In review)
+A Chrome/Edge extension that helps you stay focused by blocking sites during work timers and letting you browse during break timers.
 
 Based on [matchu](https://github.com/matchu)/[Strict-Workflow](https://github.com/matchu/Strict-Workflow).
 
@@ -32,4 +32,5 @@ Based on [matchu](https://github.com/matchu)/[Strict-Workflow](https://github.co
 
 ## TODO
 
-- You tell me
+- Background music
+- Disable skipping timer during working.
