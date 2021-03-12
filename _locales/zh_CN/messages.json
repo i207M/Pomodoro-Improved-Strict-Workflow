@@ -56,7 +56,7 @@
     "description": "On the options page, explains what the site list does"
   },
   "options_site_list_syntax": {
-    "message": "例如, \"mail.example.com\"不会匹配 \"www.example.com\", 但 \"example.com\"会匹配以上两者。 类似地, \"google.com/reader/\" 会匹配 Google Reader（谷歌阅读器）, 但不会匹配 Google Search（谷歌搜索）, Gmail,或者其它Google 服务。",
+    "message": "例如, \"mail.example.com\"不会匹配 \"www.example.com\", 但 \"example.com\"会匹配以上两者。 类似地, \"google.com/reader/\" 会匹配 Google Reader（谷歌阅读器）, 但不会匹配 Google Search（谷歌搜索）, Gmail或者其它Google 服务。",
     "description": "On the options page, explains the details of the syntax of the site list"
   },
   "options_work_block_info": {
