@@ -9,7 +9,9 @@ var PREFS = loadPrefs(),
     break: [0, 192, 0, 255],
     long_break: [0, 192, 0, 255]
   }, RING = new Audio("ring.ogg"),
-  ringLoaded = false;
+  BGM = new Audio("bgm.mp3"),
+  ringLoaded = false,
+  BGMLoaded = false;
 
 loadRingIfNecessary();
 
@@ -41,6 +43,7 @@ function defaultPrefs() {
       long_break: 15 * 60
     },
     shouldRing: true,
+    shouldBGM: false,
     clickRestarts: false,
     whitelist: false,
     sessions: {},
@@ -80,9 +83,24 @@ function updatePrefsFormat(prefs) {
     console.log("Added PREFS.showNotifications");
   }
 
+  if (!prefs.hasOwnProperty('sessions')) {
+    // Upon adding the sessions
+    // default: {}
+    prefs.sessions = {};
+    savePrefs(prefs);
+  }
+
   if (!prefs.hasOwnProperty('goal')) {
-    //  adding the goal, so if it's not set we need to set it to 16
+    // Upon adding the goal
+    // default: 16
     prefs.goal = 16;
+    savePrefs(prefs);
+  }
+
+  if (!prefs.hasOwnProperty('shouldBGM')) {
+    // Upon adding the shouldBGM
+    // default: false
+    prefs.shouldBGM = false;
     savePrefs(prefs);
   }
 
@@ -101,14 +119,20 @@ function setPrefs(prefs) {
 }
 
 function loadRingIfNecessary() {
-  console.log('is ring necessary?');
   if (PREFS.shouldRing && !ringLoaded) {
-    console.log('ring is necessary.');
     RING.onload = function () {
-      console.log('ring loaded.');
+      console.log('ring loaded');
       ringLoaded = true;
     }
     RING.load();
+  }
+
+  if (PREFS.shouldBGM && !BGMLoaded) {
+    BGM.onload = function () {
+      console.log('BGM loaded');
+      BGMLoaded = true;
+    }
+    BGM.load();
   }
 }
 
@@ -316,11 +340,11 @@ function setModes(self) {
     if (self.short_break_counter >= 3) {
       self.nextMode = 'long_break';
       setShortBreakCounter(0);
-      console.log('Start long break.');
+      console.log('Start long break');
     } else {
       self.nextMode = 'break';
       setShortBreakCounter(self.short_break_counter + 1);
-      console.log('Start break.', self.short_break_counter);
+      console.log('Start break', self.short_break_counter);
     }
   } else {
     self.nextMode = 'work';
@@ -338,7 +362,7 @@ var notification, mainPomodoro = new Pomodoro({
     onEnd: function (timer) {
       key = date2string(new Date())
       if (timer.type == "work" && timer.timeRemaining > -16) {
-        console.log("Finished working.")
+        console.log("Finished working")
         if (PREFS.sessions[key]) {
           PREFS.sessions[key] += 1
         } else {
@@ -346,6 +370,12 @@ var notification, mainPomodoro = new Pomodoro({
         }
         savePrefs(PREFS)
       }
+
+      if (PREFS.shouldBGM) {
+        console.log("BGM paused", BGM);
+        BGM.pause();
+      }
+
       chrome.browserAction.setIcon({
         path: ICONS.ACTION.PENDING[getIconMode(timer.pomodoro.nextMode)]
       });
@@ -391,6 +421,11 @@ var notification, mainPomodoro = new Pomodoro({
         if (typeof tab.startCallbacks !== 'undefined') {
           tab.startCallbacks[timer.type]();
         }
+      }
+
+      if (PREFS.shouldBGM) {
+        console.log("playing BGM", BGM);
+        BGM.play();
       }
     },
     onTick: function (timer) {
