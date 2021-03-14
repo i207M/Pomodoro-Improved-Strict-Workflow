@@ -124,5 +124,9 @@
   "notice_title": {
     "message": "Time's up!",
     "description": "The title of the notice page"
+  },
+  "continue_button_text": {
+    "message": "Go on!",
+    "description": "The text of the button on the notice page"
   }
 }

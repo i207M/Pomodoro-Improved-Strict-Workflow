@@ -124,5 +124,9 @@
   "notice_title": {
     "message": "时间到！",
     "description": "The title of the notice page"
+  },
+  "continue_button_text": {
+    "message": "继续",
+    "description": "The text of the button on the notice page"
   }
 }

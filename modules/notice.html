@@ -3,14 +3,40 @@
 
 <head>
   <title data-i18n="notice_title"></title>
+  <style type="text/css">
+    #main {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: 9000001;
+      background-image: -webkit-linear-gradient(top, rgb(252, 252, 252) 0%, rgb(240, 248, 255) 75%);
+      padding: 5em 0em 0em;
+      text-align: center;
+      color: rgb(0, 0, 0);
+      font: 16px / 1 sans-serif;
+    }
+
+    #continue-button {
+      background-color: #008CBA;
+      /* Green */
+      border: 0;
+      border-radius: 50px;
+      color: white;
+      padding: 15px 40px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 20px;
+      margin-bottom: 1em;
+    }
+  </style>
 </head>
 
 <body>
-  <div
-    style="position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; z-index: 9000001; background-image: -webkit-linear-gradient(bottom, rgb(204, 204, 204) 0%, rgb(255, 255, 255) 75%); padding: 5em 1em 1em; text-align: center; color: rgb(0, 0, 0); font: 16px / 1 sans-serif;">
-    <img id="notice-img" src="../icons/work_full.png" style="margin-bottom: 1em;">
+  <div id="main">
+    <img id="tomato-img" style="margin-bottom: 1em;">
     <p id="notice-content" style="margin: 0px 0px 0.5em;"></p>
-    <button type="submit" id="save-button" style="margin-bottom: 1em;">666</button>
+    <button id="continue-button" data-i18n="continue_button_text"></button>
   </div>
   <script type="text/javascript" src="notice.js"></script>
 </body>

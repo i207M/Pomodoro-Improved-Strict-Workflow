@@ -399,7 +399,7 @@ var notification, mainPomodoro = new Pomodoro({
       if (PREFS.shouldNewtab) {
         console.log("open new tab");
         // OPEN NEW TAB
-        chrome.tabs.create({ url: 'modules/notice.html' });
+        chrome.tabs.create({ url: 'modules/notice.html', active: true });
       }
     },
     onStart: function (timer) {

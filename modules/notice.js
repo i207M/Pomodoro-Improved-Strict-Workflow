@@ -11,3 +11,7 @@ for (var i = 0; i < localizedElements.length; i++) {
 
     el.innerHTML = message;
 }
+
+background = chrome.extension.getBackgroundPage();
+tomatoImageEl = document.getElementById('tomato-img');
+tomatoImageEl.src = "../icons/" + background.getIconMode(background.mainPomodoro.nextMode) + "_full.png";
