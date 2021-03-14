@@ -311,8 +311,8 @@ function executeInTabIfBlocked(action, tab) {
 }
 
 function executeInAllBlockedTabs(action) {
-  var windows = chrome.windows.getAll({ populate: true }, function (windows) {
-    var tabs, tab, domain, listedDomain;
+  chrome.windows.getAll({ populate: true }, function (windows) {
+    var tabs;
     for (var i in windows) {
       tabs = windows[i].tabs;
       for (var j in tabs) {
@@ -489,11 +489,11 @@ function isworking(pomodoro) {
 }
 
 var skipMode = function () {
-  if (isworking(mainPomodoro)) {
-    console.log('skip failed: working time')
-    return;
-  }
-  if (mainPomodoro.running) {
+  if (mainPomodoro.mostRecentMode == 'work' && mainPomodoro.running) {
+    console.log('skip failed: working time');
+  } else if (mainPomodoro.mostRecentMode != 'work' && !mainPomodoro.running) {
+    startPomodoro();
+  } else if (mainPomodoro.running) {
     mainPomodoro.currentTimer.timeRemaining = -16;
   } else {
     setModes(mainPomodoro);

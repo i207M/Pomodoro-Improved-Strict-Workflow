@@ -15,11 +15,27 @@ for (var i = 0; i < localizedElements.length; i++) {
 background = chrome.extension.getBackgroundPage()
 tomatoImageEl = document.getElementById('tomato-img')
 noticeContentEl = document.getElementById('notice-content')
+buttonEl = document.getElementById('continue-button')
 
 var nextMode = background.mainPomodoro.nextMode
 tomatoImageEl.src = "../icons/" + background.getIconMode(nextMode) + "_full.png"
 noticeContentEl.innerHTML = chrome.i18n.getMessage("timer_end_notification_body",
     chrome.i18n.getMessage(nextMode))
+
+function startAndClose() {
+    background.startPomodoro()
+    window.close()
+}
+
+
+buttonEl.onclick = startAndClose
+
+document.onkeydown = function (event) {
+    var code = event.key
+    if (code == 'Enter') {
+        startAndClose()
+    }
+}
 
 chrome.windows.getCurrent(function (window) {
     chrome.windows.update(window.id, { drawAttention: true })
