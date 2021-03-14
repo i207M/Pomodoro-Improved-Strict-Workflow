@@ -8,8 +8,8 @@ var PREFS = loadPrefs(),
     work: [192, 0, 0, 255],
     break: [0, 192, 0, 255],
     long_break: [0, 192, 0, 255]
-  }, RING = new Audio("ring.ogg"),
-  BGM = new Audio("bgm.mp3"),
+  }, RING = new Audio("resources/ring.ogg"),
+  BGM = new Audio("resources/bgm.mp3"),
   ringLoaded = false,
   BGMLoaded = false;
 
@@ -399,6 +399,7 @@ var notification, mainPomodoro = new Pomodoro({
       if (PREFS.shouldNewtab) {
         console.log("open new tab");
         // OPEN NEW TAB
+        chrome.tabs.create({ url: 'modules/notice.html' });
       }
     },
     onStart: function (timer) {

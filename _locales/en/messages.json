@@ -120,5 +120,9 @@
   "options_should_newtab": {
     "message": "Open newtab when a timer finishes",
     "description": "On the options page, label for the checkbox that enables/disables opening newtab when timer off"
+  },
+  "notice_title": {
+    "message": "Time's up!",
+    "description": "The title of the notice page"
   }
 }
