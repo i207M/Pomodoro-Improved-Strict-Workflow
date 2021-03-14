@@ -32,7 +32,7 @@
     "description": "Text for the blocked-site overlay, explaining that the site is blocked and when it will become unblocked"
   },
   "site_blocked_motivator": {
-    "message": "回到工作中去!",
+    "message": "回到工作中去！",
     "description": "Text for the blocked-site overlay, motivating the user to get back to work"
   },
   "options_title": {
@@ -100,7 +100,7 @@
     "description": "Bold header of pop-up notification when a timer ends"
   },
   "timer_end_notification_body": {
-    "message": "该是 $TYPE$ 的时间了。",
+    "message": "该是 $TYPE$ 的时间了",
     "description": "Body of pop-up notification when a timer ends",
     "placeholders": {
       "type": {
