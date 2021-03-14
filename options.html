@@ -10,7 +10,7 @@
       background: url(icons/work_full.png) no-repeat fixed right bottom;
       font-family: 'Lucida Grande', sans-serif;
       color: rgb(48, 57, 66);
-      -webkit-user-select: none;
+      user-select: none;
       padding: 1.5em;
       margin: 0;
     }
@@ -148,13 +148,20 @@
       <input id="should-ring" type="checkbox" />
       <label for="should-ring" data-i18n="options_should_ring"></label>
     </div>
-    <div>
-      <input id="click-restarts" type="checkbox" />
-      <label for="click-restarts">
-        <span data-i18n="options_click_restarts"></span>
-        <p class="note" data-i18n="options_click_restarts_note"></p>
-      </label>
-    </div>
+    <details>
+      <summary><span data-i18n="advanced_settings"></span></summary>
+      <div>
+        <input id="should-BGM" type="checkbox" />
+        <label for="should-BGM" data-i18n="options_should_BGM"></label>
+      </div>
+      <div>
+        <input id="click-restarts" type="checkbox" />
+        <label for="click-restarts">
+          <span data-i18n="options_click_restarts"></span>
+          <p class="note" data-i18n="options_click_restarts_note"></p>
+        </label>
+      </div>
+    </details>
     <button type="submit" id="save-button" data-i18n="options_save_changes"></button>
     <span id="save-successful" data-i18n="options_save_successful"></span>
     <div>

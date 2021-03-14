@@ -75,6 +75,10 @@
     "message": "当倒计时结束时响铃提示",
     "description": "On the options page, label for the checkbox that enables/disables ringing sound at the end of a timer"
   },
+  "options_should_BGM": {
+    "message": "工作时播放背景音乐",
+    "description": "On the options page, label for the checkbox that enables/disables playing sound during working time"
+  },
   "options_click_restarts": {
     "message": "点击正在运行的倒计时，则重新开始倒计时",
     "description": "On the options page, label for the checkbox that enables/disables the feature that clicking on a running timer restarts it"
@@ -108,5 +112,9 @@
   "skip": {
     "message": "开始工作！",
     "description": "Skip this mode and jump to next"
+  },
+  "advanced_settings": {
+    "message": "高级设置",
+    "description": "advanced settings"
   }
 }

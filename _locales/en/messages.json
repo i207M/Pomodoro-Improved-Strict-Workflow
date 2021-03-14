@@ -75,6 +75,10 @@
     "message": "Ring when a timer finishes (audio)",
     "description": "On the options page, label for the checkbox that enables/disables ringing sound at the end of a timer"
   },
+  "options_should_BGM": {
+    "message": "Play BGM when a working timer starts (audio)",
+    "description": "On the options page, label for the checkbox that enables/disables playing sound during working time"
+  },
   "options_click_restarts": {
     "message": "Clicking on a running timer restarts it",
     "description": "On the options page, label for the checkbox that enables/disables the feature that clicking on a running timer restarts it"
@@ -108,5 +112,9 @@
   "skip": {
     "message": "Start working!",
     "description": "Skip this mode and jump to next"
+  },
+  "advanced_settings": {
+    "message": "Advanced settings",
+    "description": "advanced settings"
   }
 }
