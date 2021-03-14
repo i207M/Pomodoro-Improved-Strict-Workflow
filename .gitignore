@@ -3,4 +3,4 @@ Thumbs.db
 db.json
 *.log
 *.zip
-.pic/*
+.pic
