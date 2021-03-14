@@ -25,6 +25,7 @@ var form = document.getElementById('options-form'),
   whitelistEl = document.getElementById('blacklist-or-whitelist'),
   showNotificationsEl = document.getElementById('show-notifications'),
   shouldRingEl = document.getElementById('should-ring'),
+  shouldBGMEl = document.getElementById('should-BGM'),
   clickRestartsEl = document.getElementById('click-restarts'),
   saveSuccessfulEl = document.getElementById('save-successful'),
   timeFormatErrorEl = document.getElementById('time-format-error'),
@@ -65,6 +66,7 @@ form.onsubmit = function () {
     durations: durations,
     showNotifications: showNotificationsEl.checked,
     shouldRing: shouldRingEl.checked,
+    shouldBGM: shouldBGMEl.checked,
     clickRestarts: clickRestartsEl.checked,
     whitelist: whitelistEl.selectedIndex == 1,
     sessions: background.PREFS.sessions,
@@ -78,6 +80,7 @@ siteListEl.onfocus = formAltered;
 goalEl.onfocus = formAltered;
 showNotificationsEl.onchange = formAltered;
 shouldRingEl.onchange = formAltered;
+shouldBGMEl.onchange = formAltered;
 clickRestartsEl.onchange = formAltered;
 whitelistEl.onchange = formAltered;
 
@@ -90,6 +93,7 @@ siteListEl.value = background.PREFS.siteList.join("\n");
 goalEl.value = background.PREFS.goal;
 showNotificationsEl.checked = background.PREFS.showNotifications;
 shouldRingEl.checked = background.PREFS.shouldRing;
+shouldBGMEl.checked = background.PREFS.shouldBGM;
 clickRestartsEl.checked = background.PREFS.clickRestarts;
 whitelistEl.selectedIndex = background.PREFS.whitelist ? 1 : 0;
 

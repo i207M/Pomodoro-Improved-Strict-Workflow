@@ -119,6 +119,7 @@ function loadRingIfNecessary() {
       BGMLoaded = true;
     }
     BGM.load();
+    BGM.loop = true;
   }
 }
 
@@ -357,8 +358,8 @@ var notification, mainPomodoro = new Pomodoro({
         savePrefs(PREFS)
       }
 
-      if (PREFS.shouldBGM) {
-        console.log("BGM paused", BGM);
+      if (PREFS.shouldBGM && timer.type == 'work') {
+        console.log("BGM paused", BGM, timer.type);
         BGM.pause();
       }
 
@@ -409,8 +410,8 @@ var notification, mainPomodoro = new Pomodoro({
         }
       }
 
-      if (PREFS.shouldBGM) {
-        console.log("playing BGM", BGM);
+      if (PREFS.shouldBGM && timer.type == 'work') {
+        console.log("playing BGM", BGM, timer.type);
         BGM.play();
       }
     },
