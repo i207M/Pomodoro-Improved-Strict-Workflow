@@ -13,6 +13,7 @@ Based on [matchu](https://github.com/matchu)/[Strict-Workflow](https://github.co
 - Auto start if click on notification（Thanks [pedrogalv](https://github.com/matchu/Strict-Workflow/pull/65)）
 - Set daily goal
 - Statistics（Thanks [karthickpdy](https://github.com/matchu/Strict-Workflow/pull/61)）
+- Play background music(eg. ticking) when working
 
 ---
 
@@ -27,7 +28,8 @@ Based on [matchu](https://github.com/matchu)/[Strict-Workflow](https://github.co
 - 点击通知自动启动（Thanks [pedrogalv](https://github.com/matchu/Strict-Workflow/pull/65)）
 - 设定目标
 - 数据统计（Thanks [karthickpdy](https://github.com/matchu/Strict-Workflow/pull/61)）
+- 工作时播放背景音乐（滴答声）
 
 ## TODO
 
-- Background music
+- You tell me
