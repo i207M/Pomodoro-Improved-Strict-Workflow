@@ -36,7 +36,7 @@
     "description": "Text for the blocked-site overlay, motivating the user to get back to work"
   },
   "options_title": {
-    "message": "Strict Workflow Options",
+    "message": "Pomodoro Improved Options",
     "description": "The title of the options page"
   },
   "options_blacklist_verb": {

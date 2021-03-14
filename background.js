@@ -83,20 +83,6 @@ function updatePrefsFormat(prefs) {
     console.log("Added PREFS.showNotifications");
   }
 
-  if (!prefs.hasOwnProperty('sessions')) {
-    // Upon adding the sessions
-    // default: {}
-    prefs.sessions = {};
-    savePrefs(prefs);
-  }
-
-  if (!prefs.hasOwnProperty('goal')) {
-    // Upon adding the goal
-    // default: 16
-    prefs.goal = 16;
-    savePrefs(prefs);
-  }
-
   if (!prefs.hasOwnProperty('shouldBGM')) {
     // Upon adding the shouldBGM
     // default: false
