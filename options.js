@@ -30,6 +30,7 @@ var form = document.getElementById('options-form'),
   saveSuccessfulEl = document.getElementById('save-successful'),
   timeFormatErrorEl = document.getElementById('time-format-error'),
   goalEl = document.getElementById('goal'),
+  shouldNewtabEl = document.getElementById('should-newtab'),
   background = chrome.extension.getBackgroundPage(),
   startCallbacks = {}, durationEls = {};
 
@@ -70,7 +71,8 @@ form.onsubmit = function () {
     clickRestarts: clickRestartsEl.checked,
     whitelist: whitelistEl.selectedIndex == 1,
     sessions: background.PREFS.sessions,
-    goal: goalEl.value
+    goal: goalEl.value,
+    shouldNewtab: shouldNewtabEl.checked
   })
   saveSuccessfulEl.className = 'show';
   return false;
@@ -83,6 +85,7 @@ shouldRingEl.onchange = formAltered;
 shouldBGMEl.onchange = formAltered;
 clickRestartsEl.onchange = formAltered;
 whitelistEl.onchange = formAltered;
+shouldNewtabEl.onchange = formAltered;
 
 function formAltered() {
   saveSuccessfulEl.removeAttribute('class');
@@ -94,6 +97,7 @@ goalEl.value = background.PREFS.goal;
 showNotificationsEl.checked = background.PREFS.showNotifications;
 shouldRingEl.checked = background.PREFS.shouldRing;
 shouldBGMEl.checked = background.PREFS.shouldBGM;
+shouldNewtabEl.checked = background.PREFS.shouldNewtab;
 clickRestartsEl.checked = background.PREFS.clickRestarts;
 whitelistEl.selectedIndex = background.PREFS.whitelist ? 1 : 0;
 

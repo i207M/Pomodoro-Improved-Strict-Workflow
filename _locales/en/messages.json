@@ -116,5 +116,9 @@
   "advanced_settings": {
     "message": "Advanced settings",
     "description": "advanced settings"
+  },
+  "options_should_newtab": {
+    "message": "Open newtab when a timer finishes",
+    "description": "On the options page, label for the checkbox that enables/disables opening newtab when timer off"
   }
 }

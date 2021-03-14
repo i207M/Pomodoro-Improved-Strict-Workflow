@@ -47,7 +47,8 @@ function defaultPrefs() {
     clickRestarts: false,
     whitelist: false,
     sessions: {},
-    goal: 16
+    goal: 16,
+    shouldNewtab: false
   }
 }
 
@@ -87,6 +88,13 @@ function updatePrefsFormat(prefs) {
     // Upon adding the shouldBGM
     // default: false
     prefs.shouldBGM = false;
+    savePrefs(prefs);
+  }
+
+  if (!prefs.hasOwnProperty('shouldNewtab')) {
+    // Upon adding the shouldNewtab
+    // default: false
+    prefs.shouldNewtab = false;
     savePrefs(prefs);
   }
 
@@ -387,6 +395,10 @@ var notification, mainPomodoro = new Pomodoro({
       if (PREFS.shouldRing) {
         console.log("playing ring", RING);
         RING.play();
+      }
+      if (PREFS.shouldNewtab) {
+        console.log("open new tab");
+        // OPEN NEW TAB
       }
     },
     onStart: function (timer) {
