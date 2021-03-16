@@ -13,7 +13,7 @@ var PREFS = loadPrefs(),
   ringLoaded = false,
   BGMLoaded = false;
 
-loadRingIfNecessary();
+loadAudioIfNecessary();
 
 function defaultPrefs() {
   return {
@@ -108,11 +108,11 @@ function savePrefs(prefs) {
 
 function setPrefs(prefs) {
   PREFS = savePrefs(prefs);
-  loadRingIfNecessary();
+  loadAudioIfNecessary();
   return prefs;
 }
 
-function loadRingIfNecessary() {
+function loadAudioIfNecessary() {
   if (PREFS.shouldRing && !ringLoaded) {
     RING.onload = function () {
       console.log('ring loaded');
@@ -476,7 +476,7 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
   }
 });
 
-chrome.notifications.onClicked.addListener(function (id) {
+chrome.notifications.onClicked.addListener(function () {
   // Clicking the notification brings you back to Chrome, in whatever window
   // you were last using.
   chrome.windows.getLastFocused(function (window) {
@@ -488,12 +488,8 @@ function isworking(pomodoro) {
   return (pomodoro.mostRecentMode == 'work' && pomodoro.running) || (pomodoro.mostRecentMode != 'work' && !pomodoro.running)
 }
 
-var skipMode = function () {
-  if (mainPomodoro.mostRecentMode == 'work' && mainPomodoro.running) {
-    console.log('skip failed: working time');
-  } else if (mainPomodoro.mostRecentMode != 'work' && !mainPomodoro.running) {
-    startPomodoro();
-  } else if (mainPomodoro.running) {
+function skipModeAlways() {
+  if (mainPomodoro.running) {
     mainPomodoro.currentTimer.timeRemaining = -16;
   } else {
     setModes(mainPomodoro);
@@ -505,11 +501,21 @@ var skipMode = function () {
     });
     chrome.browserAction.setBadgeText({ text: '' });
   }
+}
+
+var skipModeStrict = function () {
+  if (mainPomodoro.mostRecentMode == 'work' && mainPomodoro.running) {
+    console.log('skip failed: working time');
+  } else if (mainPomodoro.mostRecentMode != 'work' && !mainPomodoro.running) {
+    startPomodoro();
+  } else {
+    skipModeAlways();
+  }
 };
 
 
 chrome.contextMenus.create({
   title: chrome.i18n.getMessage("skip"),
   contexts: ["browser_action"],
-  onclick: skipMode
+  onclick: skipModeStrict
 })
