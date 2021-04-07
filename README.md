@@ -31,5 +31,3 @@ Based on [matchu](https://github.com/matchu)/[Strict-Workflow](https://github.co
 ## TODO
 
 - You tell me
-
-[![Stargazers over time](https://starchart.cc/i207M/Pomodoro-Improved-Strict-Workflow.svg)](https://starchart.cc/i207M/Pomodoro-Improved-Strict-Workflow)
