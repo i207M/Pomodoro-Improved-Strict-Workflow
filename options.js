@@ -37,7 +37,7 @@ var form = document.getElementById('options-form'),
 durationEls['work'] = document.getElementById('work-duration');
 durationEls['break'] = document.getElementById('break-duration');
 durationEls['long_break'] = document.getElementById('long-break-duration');
-element_goal = document.getElementById('goal')
+element_goal = document.getElementById('goal');
 
 var TIME_REGEX = /^([0-9]+)(:([0-9]{2}))?$/;
 
@@ -140,10 +140,10 @@ startCallbacks.long_break = function () {
   setInputDisabled(false);
 }
 
-var daily_count = document.getElementById("daily_count")
-var count_str = JSON.stringify(background.PREFS.sessions)
-count_list = count_str.substring(1, count_str.length - 1).replace(/"/g, '').replace(/:/g, ': ').split(',').sort().join('<br>')
-daily_count.innerHTML = count_list
+var daily_count = document.getElementById("daily_count");
+var count_str = JSON.stringify(background.PREFS.sessions);
+count_list = count_str.substring(1, count_str.length - 1).replace(/"/g, '').replace(/:/g, ': ').split(',').sort().join('<br>');
+daily_count.innerHTML = count_list;
 
 if (background.mainPomodoro.mostRecentMode == 'work') {
   startCallbacks.work();

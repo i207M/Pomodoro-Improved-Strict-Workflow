@@ -348,22 +348,22 @@ function setModes(self) {
 }
 
 function date2string(date) {
-  return date.toISOString().substring(0, 10)
+  return date.toISOString().substring(0, 10);
 }
 
 var notification, mainPomodoro = new Pomodoro({
   getDurations: function () { return PREFS.durations },
   timer: {
     onEnd: function (timer) {
-      key = date2string(new Date())
+      key = date2string(new Date());
       if (timer.type == "work" && timer.timeRemaining > -16) {
-        console.log("Finished working")
+        console.log("Finished working");
         if (PREFS.sessions[key]) {
-          PREFS.sessions[key] += 1
+          PREFS.sessions[key] += 1;
         } else {
-          PREFS.sessions[key] = 1
+          PREFS.sessions[key] = 1;
         }
-        savePrefs(PREFS)
+        savePrefs(PREFS);
       }
 
       if (PREFS.shouldBGM && timer.type == 'work') {
@@ -388,7 +388,7 @@ var notification, mainPomodoro = new Pomodoro({
         }, function () { });
         chrome.notifications.onClicked.addListener(function () {
           startPomodoro();
-          chrome.notifications.clear("notification")
+          chrome.notifications.clear("notification");
         });
       }
 
@@ -453,21 +453,21 @@ function startPomodoro() {
 }
 
 function session_count() {
-  key = date2string(new Date())
+  key = date2string(new Date());
   if (PREFS.sessions[key])
-    return PREFS.sessions[key]
+    return PREFS.sessions[key];
   else
     return 0;
 }
 
 function session_clear(key) {
   if (typeof key === 'undefined')
-    key = date2string(new Date())
-  return delete PREFS.sessions[key]
+    key = date2string(new Date());
+  return delete PREFS.sessions[key];
 }
 
 function goal() {
-  return PREFS.goal
+  return PREFS.goal;
 }
 
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
@@ -485,7 +485,7 @@ chrome.notifications.onClicked.addListener(function () {
 });
 
 function isworking(pomodoro) {
-  return (pomodoro.mostRecentMode == 'work' && pomodoro.running) || (pomodoro.mostRecentMode != 'work' && !pomodoro.running)
+  return (pomodoro.mostRecentMode == 'work' && pomodoro.running) || (pomodoro.mostRecentMode != 'work' && !pomodoro.running);
 }
 
 function skipModeAlways() {
