@@ -139,7 +139,7 @@ startCallbacks.long_break = function () {
   setInputDisabled(false);
 }
 
-var daily_count = document.getElementById("daily_count");
+var daily_count = document.getElementById("daily-count");
 var session_str = JSON.stringify(background.PREFS.sessions);
 count_list = session_str.substring(1, session_str.length - 1).replace(/"/g, '').replace(/:/g, ': ').split(',').sort().join('<br>');
 daily_count.innerHTML = count_list;
