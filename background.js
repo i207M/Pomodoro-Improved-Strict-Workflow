@@ -466,10 +466,6 @@ function session_clear(key) {
   return delete PREFS.sessions[key];
 }
 
-function goal() {
-  return PREFS.goal;
-}
-
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
   if (mainPomodoro.mostRecentMode == 'work') {
     executeInTabIfBlocked('block', tab);

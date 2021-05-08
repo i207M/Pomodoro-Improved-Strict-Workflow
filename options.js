@@ -42,7 +42,7 @@ var TIME_REGEX = /^([0-9]+)(:([0-9]{2}))?$/;
 
 form.onsubmit = function () {
   console.log("form submitted");
-  var durations = {}, duration, durationStr, durationMatch;
+  var durations = {}, durationStr, durationMatch;
 
   for (var key in durationEls) {
     durationStr = durationEls[key].value;
@@ -72,7 +72,7 @@ form.onsubmit = function () {
     sessions: background.PREFS.sessions,
     goal: goalEl.value,
     shouldNewtab: shouldNewtabEl.checked
-  })
+  });
   saveSuccessfulEl.className = 'show';
   return false;
 }
@@ -121,7 +121,7 @@ function setInputDisabled(state) {
   for (var key in durationEls) {
     durationEls[key].disabled = state;
   }
-  goalEl.disabled = state
+  goalEl.disabled = state;
 }
 
 startCallbacks.work = function () {
@@ -140,8 +140,8 @@ startCallbacks.long_break = function () {
 }
 
 var daily_count = document.getElementById("daily_count");
-var count_str = JSON.stringify(background.PREFS.sessions);
-count_list = count_str.substring(1, count_str.length - 1).replace(/"/g, '').replace(/:/g, ': ').split(',').sort().join('<br>');
+var session_str = JSON.stringify(background.PREFS.sessions);
+count_list = session_str.substring(1, session_str.length - 1).replace(/"/g, '').replace(/:/g, ': ').split(',').sort().join('<br>');
 daily_count.innerHTML = count_list;
 
 if (background.mainPomodoro.mostRecentMode == 'work') {
