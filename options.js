@@ -1,3 +1,4 @@
+"use strict";
 /*
   Localization
 */
@@ -146,7 +147,7 @@ startCallbacks.long_break = function () {
 
 var daily_count = document.getElementById("daily-count");
 var session_str = JSON.stringify(background.PREFS.sessions);
-count_list = session_str
+var count_list = session_str
   .substring(1, session_str.length - 1)
   .replace(/"/g, "")
   .replace(/:/g, ": ")

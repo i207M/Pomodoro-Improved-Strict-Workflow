@@ -1,0 +1,22 @@
+{
+  "name": "pomodoro-improved-strict-workflow",
+  "version": "1.0.0",
+  "description": "A Chrome/Edge extension that helps you stay focused by blocking sites during work timers and letting you browse during break timers.",
+  "main": "background.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/i207M/Pomodoro-Improved-Strict-Workflow.git"
+  },
+  "author": "",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/i207M/Pomodoro-Improved-Strict-Workflow/issues"
+  },
+  "homepage": "https://github.com/i207M/Pomodoro-Improved-Strict-Workflow#readme",
+  "devDependencies": {
+    "eslint": "^7.26.0"
+  }
+}

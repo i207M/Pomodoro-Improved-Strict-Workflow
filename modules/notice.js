@@ -1,3 +1,4 @@
+"use strict";
 // Localize all elements with a data-i18n="message_name" attribute
 var localizedElements = document.querySelectorAll("[data-i18n]"),
   el,
@@ -14,11 +15,11 @@ for (var i = 0; i < localizedElements.length; i++) {
   el.innerHTML = message;
 }
 
-background = chrome.extension.getBackgroundPage();
-tomatoImageEl = document.getElementById("tomato-img");
-noticeContentEl = document.getElementById("notice-content");
-buttonEl = document.getElementById("continue-button");
-noticeTimeEl = document.getElementById("notice-time");
+var background = chrome.extension.getBackgroundPage();
+var tomatoImageEl = document.getElementById("tomato-img");
+var noticeContentEl = document.getElementById("notice-content");
+var buttonEl = document.getElementById("continue-button");
+var noticeTimeEl = document.getElementById("notice-time");
 
 var nextMode = background.mainPomodoro.nextMode;
 tomatoImageEl.src =
