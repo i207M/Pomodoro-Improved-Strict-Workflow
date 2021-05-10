@@ -20,8 +20,7 @@
    "permissions": [
       "notifications",
       "tabs",
-      "<all_urls>",
-      "contextMenus"
+      "<all_urls>"
    ],
    "version": "2.2.4",
    "web_accessible_resources": [

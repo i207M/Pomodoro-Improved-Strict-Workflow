@@ -3,13 +3,15 @@
 */
 
 // Localize all elements with a data-i18n="message_name" attribute
-var localizedElements = document.querySelectorAll('[data-i18n]'), el, message;
+var localizedElements = document.querySelectorAll("[data-i18n]"),
+  el,
+  message;
 for (var i = 0; i < localizedElements.length; i++) {
   el = localizedElements[i];
-  message = chrome.i18n.getMessage(el.getAttribute('data-i18n'));
+  message = chrome.i18n.getMessage(el.getAttribute("data-i18n"));
 
   // Capitalize first letter if element has attribute data-i18n-caps
-  if (el.hasAttribute('data-i18n-caps')) {
+  if (el.hasAttribute("data-i18n-caps")) {
     message = message.charAt(0).toUpperCase() + message.substr(1);
   }
 
@@ -20,41 +22,44 @@ for (var i = 0; i < localizedElements.length; i++) {
   Form interaction
 */
 
-var form = document.getElementById('options-form'),
-  siteListEl = document.getElementById('site-list'),
-  whitelistEl = document.getElementById('blacklist-or-whitelist'),
-  showNotificationsEl = document.getElementById('show-notifications'),
-  shouldRingEl = document.getElementById('should-ring'),
-  shouldBGMEl = document.getElementById('should-BGM'),
-  clickRestartsEl = document.getElementById('click-restarts'),
-  saveSuccessfulEl = document.getElementById('save-successful'),
-  timeFormatErrorEl = document.getElementById('time-format-error'),
-  goalEl = document.getElementById('goal'),
-  shouldNewtabEl = document.getElementById('should-newtab'),
+var form = document.getElementById("options-form"),
+  siteListEl = document.getElementById("site-list"),
+  whitelistEl = document.getElementById("blacklist-or-whitelist"),
+  showNotificationsEl = document.getElementById("show-notifications"),
+  shouldRingEl = document.getElementById("should-ring"),
+  shouldBGMEl = document.getElementById("should-BGM"),
+  clickRestartsEl = document.getElementById("click-restarts"),
+  saveSuccessfulEl = document.getElementById("save-successful"),
+  timeFormatErrorEl = document.getElementById("time-format-error"),
+  goalEl = document.getElementById("goal"),
+  shouldNewtabEl = document.getElementById("should-newtab"),
   background = chrome.extension.getBackgroundPage(),
-  startCallbacks = {}, durationEls = {};
+  startCallbacks = {},
+  durationEls = {};
 
-durationEls['work'] = document.getElementById('work-duration');
-durationEls['break'] = document.getElementById('break-duration');
-durationEls['long_break'] = document.getElementById('long-break-duration');
+durationEls["work"] = document.getElementById("work-duration");
+durationEls["break"] = document.getElementById("break-duration");
+durationEls["long_break"] = document.getElementById("long-break-duration");
 
 var TIME_REGEX = /^([0-9]+)(:([0-9]{2}))?$/;
 
 form.onsubmit = function () {
   console.log("form submitted");
-  var durations = {}, durationStr, durationMatch;
+  var durations = {},
+    durationStr,
+    durationMatch;
 
   for (var key in durationEls) {
     durationStr = durationEls[key].value;
     durationMatch = durationStr.match(TIME_REGEX);
     if (durationMatch) {
       console.log(durationMatch);
-      durations[key] = (60 * parseInt(durationMatch[1], 10));
+      durations[key] = 60 * parseInt(durationMatch[1], 10);
       if (durationMatch[3]) {
         durations[key] += parseInt(durationMatch[3], 10);
       }
     } else {
-      timeFormatErrorEl.className = 'show';
+      timeFormatErrorEl.className = "show";
       return false;
     }
   }
@@ -71,11 +76,11 @@ form.onsubmit = function () {
     whitelist: whitelistEl.selectedIndex == 1,
     sessions: background.PREFS.sessions,
     goal: goalEl.value,
-    shouldNewtab: shouldNewtabEl.checked
+    shouldNewtab: shouldNewtabEl.checked,
   });
-  saveSuccessfulEl.className = 'show';
+  saveSuccessfulEl.className = "show";
   return false;
-}
+};
 
 siteListEl.onfocus = formAltered;
 goalEl.onfocus = formAltered;
@@ -87,8 +92,8 @@ whitelistEl.onchange = formAltered;
 shouldNewtabEl.onchange = formAltered;
 
 function formAltered() {
-  saveSuccessfulEl.removeAttribute('class');
-  timeFormatErrorEl.removeAttribute('class');
+  saveSuccessfulEl.removeAttribute("class");
+  timeFormatErrorEl.removeAttribute("class");
 }
 
 siteListEl.value = background.PREFS.siteList.join("\n");
@@ -125,25 +130,31 @@ function setInputDisabled(state) {
 }
 
 startCallbacks.work = function () {
-  document.body.className = 'work';
+  document.body.className = "work";
   setInputDisabled(true);
-}
+};
 
 startCallbacks.break = function () {
-  document.body.removeAttribute('class');
+  document.body.removeAttribute("class");
   setInputDisabled(false);
-}
+};
 
 startCallbacks.long_break = function () {
-  document.body.removeAttribute('class');
+  document.body.removeAttribute("class");
   setInputDisabled(false);
-}
+};
 
 var daily_count = document.getElementById("daily-count");
 var session_str = JSON.stringify(background.PREFS.sessions);
-count_list = session_str.substring(1, session_str.length - 1).replace(/"/g, '').replace(/:/g, ': ').split(',').sort().join('<br>');
+count_list = session_str
+  .substring(1, session_str.length - 1)
+  .replace(/"/g, "")
+  .replace(/:/g, ": ")
+  .split(",")
+  .sort()
+  .join("<br>");
 daily_count.innerHTML = count_list;
 
-if (background.mainPomodoro.mostRecentMode == 'work') {
+if (background.mainPomodoro.mostRecentMode == "work") {
   startCallbacks.work();
 }
