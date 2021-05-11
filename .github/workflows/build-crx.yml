@@ -14,9 +14,13 @@ jobs:
     - name: Auto Minify
       uses: nizarmah/auto-minify@master
 
+    - name: Override
+      run: |
+        python minify-override.py
+
     - name: Zip
       run: |
-        zip Pomodoro-Improved-build.zip -@ < build.lst
+        zip -q -r Pomodoro-Improved-build.zip -@ < build.lst
         cp Pomodoro-Improved-build.zip Pomodoro-Improved-build.crx
 
     - name: 'Upload Artifact'

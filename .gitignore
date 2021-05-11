@@ -5,3 +5,5 @@ db.json
 *.zip
 .pic/
 node_modules/
+.vscode/
+__pycache__/
