@@ -1,7 +1,8 @@
-icons/
-resources/
+_locales/
 content_scripts/
+icons/
 modules/
+resources/
 background.js
 LICENSE
 manifest.json
