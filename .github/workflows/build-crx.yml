@@ -16,7 +16,7 @@ jobs:
 
     - name: Override
       run: |
-        python minify-override.py
+        python min.js-override.py
 
     - name: Zip
       run: |
