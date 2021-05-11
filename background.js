@@ -109,12 +109,6 @@ function savePrefs(prefs) {
   return prefs;
 }
 
-function setPrefs(prefs) {
-  PREFS = savePrefs(prefs);
-  loadAudioIfNecessary();
-  return prefs;
-}
-
 function loadAudioIfNecessary() {
   if (PREFS.shouldRing && !ringLoaded) {
     RING.onload = function () {
@@ -162,7 +156,7 @@ function Pomodoro(options) {
   this.running = false;
   this.short_break_counter = 0;
 
-  this.onTimerEnd = function (timer) {
+  this.onTimerEnd = function () {
     this.running = false;
   };
 
@@ -221,7 +215,7 @@ Pomodoro.Timer = function Timer(pomodoro, options) {
     options.onTick(timer);
     if (timer.timeRemaining <= 0) {
       clearInterval(tickInterval);
-      pomodoro.onTimerEnd(timer);
+      pomodoro.onTimerEnd();
       options.onEnd(timer);
     }
   }
@@ -295,7 +289,7 @@ function domainsMatch(test, against) {
 
 function isLocationBlocked(location) {
   for (var k in PREFS.siteList) {
-    listedPattern = parseLocation(PREFS.siteList[k]);
+    var listedPattern = parseLocation(PREFS.siteList[k]);
     if (locationsMatch(location, listedPattern)) {
       // If we're in a whitelist, a matched location is not blocked => false
       // If we're in a blacklist, a matched location is blocked => true
@@ -367,7 +361,7 @@ var notification,
     },
     timer: {
       onEnd: function (timer) {
-        key = date2string(new Date());
+        var key = date2string(new Date());
         if (timer.type == "work" && timer.timeRemaining > -16) {
           console.log("Finished working");
           if (PREFS.sessions[key]) {
@@ -474,7 +468,7 @@ function startPomodoro() {
 }
 
 function session_count() {
-  key = date2string(new Date());
+  var key = date2string(new Date());
   if (PREFS.sessions[key]) return PREFS.sessions[key];
   else return 0;
 }
@@ -497,13 +491,6 @@ chrome.notifications.onClicked.addListener(function () {
     chrome.windows.update(window.id, { focused: true });
   });
 });
-
-function isworking(pomodoro) {
-  return (
-    (pomodoro.mostRecentMode == "work" && pomodoro.running) ||
-    (pomodoro.mostRecentMode != "work" && !pomodoro.running)
-  );
-}
 
 function skipModeAlways() {
   if (mainPomodoro.running) {
