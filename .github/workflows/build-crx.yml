@@ -1,0 +1,25 @@
+name: "Build crx"
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Auto Minify
+      uses: nizarmah/auto-minify@master
+
+    - name: Zip
+      run: |
+        zip Pomodoro-Improved-build.crx -@ < build.lst
+
+    - name: 'Upload Artifact'
+      uses: actions/upload-artifact@v2
+      with:
+        name: crx file
+        path: Pomodoro-Improved-build.crx
