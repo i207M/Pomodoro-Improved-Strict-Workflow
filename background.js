@@ -108,6 +108,11 @@ function savePrefs(prefs) {
   localStorage["prefs"] = JSON.stringify(prefs);
   return prefs;
 }
+function setPrefs(prefs) {
+  PREFS = savePrefs(prefs);
+  loadAudioIfNecessary();
+  return prefs;
+}
 
 function loadAudioIfNecessary() {
   if (PREFS.shouldRing && !ringLoaded) {

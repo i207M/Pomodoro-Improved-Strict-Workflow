@@ -20,6 +20,7 @@
    "permissions": [
       "notifications",
       "tabs",
+	  "contextMenus",
       "<all_urls>"
    ],
    "version": "2.2.4",
