@@ -4,6 +4,8 @@ db.json
 *.log
 *.zip
 .pic/
-node_modules/
 .vscode/
 __pycache__/
+node_modules/
+package.json
+package-lock.json
