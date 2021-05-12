@@ -45,11 +45,9 @@ jobs:
 
     - name: Zip
       run: |
-        zip -q -r Pomodoro-Improved-build.zip -@ < build.lst
-        cp Pomodoro-Improved-build.zip Pomodoro-Improved-build.crx
+        zip -q -r Pomodoro-Improved-build.zip build/*
 
     - name: 'Upload Artifact'
       uses: actions/upload-artifact@v2
       with:
-        name: zip file
         path: Pomodoro-Improved-build.zip
