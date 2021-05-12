@@ -23,7 +23,7 @@
 	  "contextMenus",
       "<all_urls>"
    ],
-   "version": "2.2.4",
+   "version": "2.2.5",
    "web_accessible_resources": [
       "icons/work_full.png",
       "icons/break_full.png"
