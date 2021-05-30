@@ -40,6 +40,9 @@ buttonEl.onclick = startAndClose;
 document.onkeydown = function (event) {
   var code = event.key;
   if (code == "Enter") {
+    if (event.shiftKey) {
+      background.skipModeAlways();
+    }
     startAndClose();
   }
 };
