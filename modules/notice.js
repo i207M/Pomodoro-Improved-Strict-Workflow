@@ -40,7 +40,7 @@ buttonEl.onclick = startAndClose;
 document.onkeydown = function (event) {
   var code = event.key;
   if (code == "Enter") {
-    if (event.shiftKey) {
+    if (event.shiftKey && background.mainPomodoro.mostRecentMode == "work") {
       background.skipModeAlways();
     }
     startAndClose();
