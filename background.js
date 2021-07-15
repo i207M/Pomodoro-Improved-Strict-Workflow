@@ -36,7 +36,6 @@ function defaultPrefs() {
       "hulu.com",
       "bilibili.com",
       "steampowered.com",
-      "steamdb.info",
       "epicgames.com",
     ],
     durations: {
@@ -351,8 +350,6 @@ function setModes(self) {
     }
   } else {
     self.nextMode = "work";
-    self.mostRecentMode =
-      self.short_break_counter >= 3 ? "long_break" : "break";
   }
 }
 
@@ -498,28 +495,13 @@ chrome.notifications.onClicked.addListener(function () {
   });
 });
 
-function skipModeAlways() {
-  if (mainPomodoro.running) {
-    mainPomodoro.currentTimer.timeRemaining = -16;
-  } else {
-    setModes(mainPomodoro);
-    var mostRecentMode = mainPomodoro.mostRecentMode;
-    mainPomodoro.mostRecentMode = mainPomodoro.nextMode;
-    mainPomodoro.nextMode = mostRecentMode;
-    chrome.browserAction.setIcon({
-      path: ICONS.ACTION.PENDING[getIconMode(mainPomodoro.nextMode)],
-    });
-    chrome.browserAction.setBadgeText({ text: "" });
-  }
-}
-
 var skipModeStrict = function () {
   if (mainPomodoro.mostRecentMode == "work" && mainPomodoro.running) {
     console.log("skip failed: working time");
-  } else if (mainPomodoro.mostRecentMode != "work" && !mainPomodoro.running) {
+  } else if (!mainPomodoro.running) {
     startPomodoro();
   } else {
-    skipModeAlways();
+    mainPomodoro.currentTimer.timeRemaining = -16;
   }
 };
 
