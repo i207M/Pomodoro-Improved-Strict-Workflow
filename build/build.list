@@ -1,6 +1,5 @@
 _locales/
 content_scripts/
-icons/
 modules/
 resources/
 background.js
