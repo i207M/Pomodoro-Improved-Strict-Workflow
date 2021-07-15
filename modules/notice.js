@@ -22,8 +22,9 @@ var buttonEl = document.getElementById("continue-button");
 var noticeTimeEl = document.getElementById("notice-time");
 
 var nextMode = background.mainPomodoro.nextMode;
-tomatoImageEl.src =
-  "../resources/icons/" + background.getIconMode(nextMode) + "_full.png";
+tomatoImageEl.src = chrome.extension.getURL(
+  "resources/icons/" + background.getIconMode(nextMode) + "_full.png"
+);
 noticeContentEl.innerHTML = chrome.i18n.getMessage(
   "timer_end_notification_body",
   chrome.i18n.getMessage(nextMode)
