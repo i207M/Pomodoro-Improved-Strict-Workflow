@@ -68,7 +68,7 @@ function updatePrefsFormat(prefs) {
   // compatibility issue. However, in more complicated situations, we need
   // to modify an old PREFS module's structure for compatibility.
 
-  if (prefs.hasOwnProperty("domainBlacklist")) {
+  if (Object.prototype.hasOwnProperty.call(prefs, "domainBlacklist")) {
     // Upon adding the whitelist feature, the domainBlacklist property was
     // renamed to siteList for clarity.
 
@@ -78,7 +78,7 @@ function updatePrefsFormat(prefs) {
     console.log("Renamed PREFS.domainBlacklist to PREFS.siteList");
   }
 
-  if (!prefs.hasOwnProperty("showNotifications")) {
+  if (!Object.prototype.hasOwnProperty.call(prefs, "showNotifications")) {
     // Upon adding the option to disable notifications, added the
     // showNotifications property, which defaults to true.
     prefs.showNotifications = true;
@@ -86,14 +86,14 @@ function updatePrefsFormat(prefs) {
     console.log("Added PREFS.showNotifications");
   }
 
-  if (!prefs.hasOwnProperty("shouldBGM")) {
+  if (!Object.prototype.hasOwnProperty.call(prefs, "shouldBGM")) {
     // Upon adding the shouldBGM
     // default: false
     prefs.shouldBGM = false;
     savePrefs(prefs);
   }
 
-  if (!prefs.hasOwnProperty("shouldNewtab")) {
+  if (!Object.prototype.hasOwnProperty.call(prefs, "shouldNewtab")) {
     // Upon adding the shouldNewtab
     // default: false
     prefs.shouldNewtab = false;
@@ -107,11 +107,14 @@ function savePrefs(prefs) {
   localStorage["prefs"] = JSON.stringify(prefs);
   return prefs;
 }
+
+/* eslint-disable */
 function setPrefs(prefs) {
   PREFS = savePrefs(prefs);
   loadAudioIfNecessary();
   return prefs;
 }
+/* eslint-enable */
 
 function loadAudioIfNecessary() {
   if (PREFS.shouldRing && !ringLoaded) {
@@ -456,7 +459,7 @@ function getIconMode(timerState) {
   return timerState == "work" ? "work" : "break";
 }
 
-chrome.browserAction.onClicked.addListener(function (tab) {
+chrome.browserAction.onClicked.addListener(function () {
   startPomodoro();
 });
 
@@ -470,6 +473,7 @@ function startPomodoro() {
   }
 }
 
+/* eslint-disable */
 function session_count() {
   var key = date2string(new Date());
   if (PREFS.sessions[key]) return PREFS.sessions[key];
@@ -480,6 +484,7 @@ function session_clear(key) {
   if (typeof key === "undefined") key = date2string(new Date());
   return delete PREFS.sessions[key];
 }
+/* eslint-enable */
 
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
   if (mainPomodoro.mostRecentMode == "work") {
