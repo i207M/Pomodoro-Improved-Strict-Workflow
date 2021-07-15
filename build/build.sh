@@ -1,2 +1,2 @@
-mkdir pomodoro-improved-build
-cat build.list | xargs cp -t pomodoro-improved-build/
+mkdir build/pomodoro-improved-build/
+cat build/build.list | xargs cp -t build/pomodoro-improved-build/
