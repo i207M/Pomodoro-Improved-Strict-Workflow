@@ -1,4 +1,4 @@
 (function () {
-  var overlay = document.getElementById('matchu-pomodoro-extension-overlay');
+  var overlay = document.getElementById("pomodoro-extension-overlay");
   document.body.removeChild(overlay);
 })();
