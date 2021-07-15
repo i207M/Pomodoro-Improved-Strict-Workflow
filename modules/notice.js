@@ -23,7 +23,7 @@ var noticeTimeEl = document.getElementById("notice-time");
 
 var nextMode = background.mainPomodoro.nextMode;
 tomatoImageEl.src =
-  "../icons/" + background.getIconMode(nextMode) + "_full.png";
+  "../resources/icons/" + background.getIconMode(nextMode) + "_full.png";
 noticeContentEl.innerHTML = chrome.i18n.getMessage(
   "timer_end_notification_body",
   chrome.i18n.getMessage(nextMode)

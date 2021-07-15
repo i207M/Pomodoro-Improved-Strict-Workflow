@@ -18,7 +18,7 @@
       overlay.style.color = '#000';
       overlay.style.font = 'normal normal normal 16px/1 sans-serif';
       
-      img.src = chrome.extension.getURL('icons/work_full.png');
+      img.src = chrome.extension.getURL("resources/icons/work_full.png");
       img.style.marginBottom = '1em';
       overlay.appendChild(img);
       

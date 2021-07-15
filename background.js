@@ -144,9 +144,10 @@ var ICONS = {
   iconType;
 for (var i in iconTypeS) {
   iconType = iconTypeS[i];
-  ICONS.ACTION.CURRENT[iconType] = "icons/" + iconType + ".png";
-  ICONS.ACTION.PENDING[iconType] = "icons/" + iconType + "_pending.png";
-  ICONS.FULL[iconType] = "icons/" + iconType + "_full.png";
+  ICONS.ACTION.CURRENT[iconType] = "resources/icons/" + iconType + ".png";
+  ICONS.ACTION.PENDING[iconType] =
+    "resources/icons/" + iconType + "_pending.png";
+  ICONS.FULL[iconType] = "resources/icons/" + iconType + "_full.png";
 }
 
 /*
