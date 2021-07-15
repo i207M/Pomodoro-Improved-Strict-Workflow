@@ -1,0 +1,11 @@
+_locales/
+content_scripts/
+icons/
+modules/
+resources/
+background.js
+LICENSE
+manifest.json
+options.html
+options.js
+README.md

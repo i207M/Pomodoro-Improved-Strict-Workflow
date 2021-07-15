@@ -12,10 +12,10 @@ jobs:
         uses: anthonyftwang/minify-action@v1.0.1
       - name: Zip
         run: |
-          ls
-          python build/prework.py
-          zip -q -r Pomodoro-Improved-build.zip build/crx/*
-      - name: "Upload Artifact"
+          cd build/
+          bash build.sh
+          zip -q -r Pomodoro-Improved-build.zip pomodoro-improved-build/*
+      - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
           name: Pomodoro-Improved-build
