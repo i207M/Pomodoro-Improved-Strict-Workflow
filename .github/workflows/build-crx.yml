@@ -12,11 +12,11 @@ jobs:
         uses: anthonyftwang/minify-action@v1.0.1
       - name: Zip
         run: |
+          bash build/build.sh
           cd build/
-          bash build.sh
           zip -q -r Pomodoro-Improved-build.zip pomodoro-improved-build/*
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
           name: Pomodoro-Improved-build
-          path: Pomodoro-Improved-build.zip
+          path: build/Pomodoro-Improved-build.zip

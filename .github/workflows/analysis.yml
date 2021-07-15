@@ -1,4 +1,4 @@
-name: "Analysis"
+name: Analysis
 on:
   push:
 jobs:
@@ -12,5 +12,3 @@ jobs:
         uses: github/codeql-action/init@v1
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v1
-      - name: Run ESLint
-        run: eslint . --ext .js,.jsx,.ts,.tsx
