@@ -9,10 +9,10 @@ Based on [matchu](https://github.com/matchu)/[Strict-Workflow](https://github.co
 ## Features
 
 - Blacklist or whitelist
-- Long-short break (Thanks [cori](https://github.com/matchu/Strict-Workflow/pull/25))
-- Statistics & Set daily goal (Thanks [karthickpdy](https://github.com/matchu/Strict-Workflow/pull/61))
+- Long-short break (Thanks [@cori](https://github.com/matchu/Strict-Workflow/pull/25))
+- Statistics & Set daily goal (Thanks [@karthickpdy](https://github.com/matchu/Strict-Workflow/pull/61))
 - Play background music (eg. ticking) when working
-- Auto start if click on notification (Thanks [pedrogalv](https://github.com/matchu/Strict-Workflow/pull/65))
+- Click the notification to start automatically (Thanks [@pedrogalv](https://github.com/matchu/Strict-Workflow/pull/65))
 
 ## Usage
 
@@ -20,7 +20,7 @@ Go to [Microsoft Edge Addons store](https://microsoftedge.microsoft.com/addons/d
 
 Otherwise:
 
-1. Download `.zip` file in the latest release (, the artifact produced in a workflow run, or `git clone`).
+1. Download `.zip` file in the latest release (or the artifact produced in a workflow run).
 2. Unzip the crx file.
 3. Enable Developer mode on the chrome extensions page.
 4. Click "Load unpacked extension..."
@@ -39,7 +39,7 @@ Otherwise:
 ## 功能
 
 - 黑名单/白名单
-- 长短休息（Thanks [cori](https://github.com/matchu/Strict-Workflow/pull/25)）
-- 数据统计 & 设定目标（Thanks [karthickpdy](https://github.com/matchu/Strict-Workflow/pull/61)）
+- 长短休息（Thanks [@cori](https://github.com/matchu/Strict-Workflow/pull/25)）
+- 数据统计 & 设定目标（Thanks [@karthickpdy](https://github.com/matchu/Strict-Workflow/pull/61)）
 - 工作时播放背景音乐（滴答声）
-- 点击通知自动启动（Thanks [pedrogalv](https://github.com/matchu/Strict-Workflow/pull/65)）
+- 点击通知自动启动（Thanks [@pedrogalv](https://github.com/matchu/Strict-Workflow/pull/65)）
