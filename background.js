@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 /*
 
   Constants
@@ -10,8 +10,8 @@ var PREFS = loadPrefs(),
     break: [0, 192, 0, 255],
     long_break: [0, 192, 0, 255],
   },
-  RING = new Audio("resources/ring.ogg"),
-  BGM = new Audio("resources/bgm.mp3"),
+  RING = new Audio('resources/ring.ogg'),
+  BGM = new Audio('resources/bgm.mp3'),
   ringLoaded = false,
   BGMLoaded = false;
 
@@ -20,23 +20,23 @@ loadAudioIfNecessary();
 function defaultPrefs() {
   return {
     siteList: [
-      "facebook.com",
-      "youtube.com",
-      "twitter.com",
-      "tumblr.com",
-      "pinterest.com",
-      "myspace.com",
-      "livejournal.com",
-      "digg.com",
-      "stumbleupon.com",
-      "reddit.com",
-      "kongregate.com",
-      "newgrounds.com",
-      "addictinggames.com",
-      "hulu.com",
-      "bilibili.com",
-      "steampowered.com",
-      "epicgames.com",
+      'facebook.com',
+      'youtube.com',
+      'twitter.com',
+      'tumblr.com',
+      'pinterest.com',
+      'myspace.com',
+      'livejournal.com',
+      'digg.com',
+      'stumbleupon.com',
+      'reddit.com',
+      'kongregate.com',
+      'newgrounds.com',
+      'addictinggames.com',
+      'hulu.com',
+      'bilibili.com',
+      'steampowered.com',
+      'epicgames.com',
     ],
     durations: {
       // in seconds
@@ -55,8 +55,8 @@ function defaultPrefs() {
 }
 
 function loadPrefs() {
-  if (typeof localStorage["prefs"] !== "undefined") {
-    return updatePrefsFormat(JSON.parse(localStorage["prefs"]));
+  if (typeof localStorage['prefs'] !== 'undefined') {
+    return updatePrefsFormat(JSON.parse(localStorage['prefs']));
   } else {
     return savePrefs(defaultPrefs());
   }
@@ -68,32 +68,32 @@ function updatePrefsFormat(prefs) {
   // compatibility issue. However, in more complicated situations, we need
   // to modify an old PREFS module's structure for compatibility.
 
-  if (Object.prototype.hasOwnProperty.call(prefs, "domainBlacklist")) {
+  if (Object.prototype.hasOwnProperty.call(prefs, 'domainBlacklist')) {
     // Upon adding the whitelist feature, the domainBlacklist property was
     // renamed to siteList for clarity.
 
     prefs.siteList = prefs.domainBlacklist;
     delete prefs.domainBlacklist;
     savePrefs(prefs);
-    console.log("Renamed PREFS.domainBlacklist to PREFS.siteList");
+    console.log('Renamed PREFS.domainBlacklist to PREFS.siteList');
   }
 
-  if (!Object.prototype.hasOwnProperty.call(prefs, "showNotifications")) {
+  if (!Object.prototype.hasOwnProperty.call(prefs, 'showNotifications')) {
     // Upon adding the option to disable notifications, added the
     // showNotifications property, which defaults to true.
     prefs.showNotifications = true;
     savePrefs(prefs);
-    console.log("Added PREFS.showNotifications");
+    console.log('Added PREFS.showNotifications');
   }
 
-  if (!Object.prototype.hasOwnProperty.call(prefs, "shouldBGM")) {
+  if (!Object.prototype.hasOwnProperty.call(prefs, 'shouldBGM')) {
     // Upon adding the shouldBGM
     // default: false
     prefs.shouldBGM = false;
     savePrefs(prefs);
   }
 
-  if (!Object.prototype.hasOwnProperty.call(prefs, "shouldNewtab")) {
+  if (!Object.prototype.hasOwnProperty.call(prefs, 'shouldNewtab')) {
     // Upon adding the shouldNewtab
     // default: false
     prefs.shouldNewtab = false;
@@ -104,7 +104,7 @@ function updatePrefsFormat(prefs) {
 }
 
 function savePrefs(prefs) {
-  localStorage["prefs"] = JSON.stringify(prefs);
+  localStorage['prefs'] = JSON.stringify(prefs);
   return prefs;
 }
 
@@ -119,7 +119,7 @@ function setPrefs(prefs) {
 function loadAudioIfNecessary() {
   if (PREFS.shouldRing && !ringLoaded) {
     RING.onload = function () {
-      console.log("ring loaded");
+      console.log('ring loaded');
       ringLoaded = true;
     };
     RING.load();
@@ -127,7 +127,7 @@ function loadAudioIfNecessary() {
 
   if (PREFS.shouldBGM && !BGMLoaded) {
     BGM.onload = function () {
-      console.log("BGM loaded");
+      console.log('BGM loaded');
       BGMLoaded = true;
     };
     BGM.load();
@@ -142,14 +142,14 @@ var ICONS = {
     },
     FULL: {},
   },
-  iconTypeS = ["default", "work", "break"],
+  iconTypeS = ['default', 'work', 'break'],
   iconType;
 for (var i in iconTypeS) {
   iconType = iconTypeS[i];
-  ICONS.ACTION.CURRENT[iconType] = "resources/icons/" + iconType + ".png";
+  ICONS.ACTION.CURRENT[iconType] = 'resources/icons/' + iconType + '.png';
   ICONS.ACTION.PENDING[iconType] =
-    "resources/icons/" + iconType + "_pending.png";
-  ICONS.FULL[iconType] = "resources/icons/" + iconType + "_full.png";
+    'resources/icons/' + iconType + '_pending.png';
+  ICONS.FULL[iconType] = 'resources/icons/' + iconType + '_full.png';
 }
 
 /*
@@ -159,8 +159,8 @@ for (var i in iconTypeS) {
 */
 
 function Pomodoro(options) {
-  this.mostRecentMode = "break";
-  this.nextMode = "work";
+  this.mostRecentMode = 'break';
+  this.nextMode = 'work';
   this.running = false;
   this.short_break_counter = 0;
 
@@ -212,9 +212,9 @@ Pomodoro.Timer = function Timer(pomodoro, options) {
 
   this.timeRemainingString = function () {
     if (this.timeRemaining >= 60) {
-      return Math.round(this.timeRemaining / 60) + "m";
+      return Math.round(this.timeRemaining / 60) + 'm';
     } else {
-      return (this.timeRemaining % 60) + "s";
+      return (this.timeRemaining % 60) + 's';
     }
   };
 
@@ -246,8 +246,8 @@ function locationsMatch(location, listedPattern) {
 }
 
 function parseLocation(location) {
-  var components = location.split("/");
-  return { domain: components.shift(), path: components.join("/") };
+  var components = location.split('/');
+  return { domain: components.shift(), path: components.join('/') };
 }
 
 function pathsMatch(test, against) {
@@ -290,7 +290,7 @@ function domainsMatch(test, against) {
       // Case 3: if and only if the first string is longer than the second and
       // the first string ends with a period followed by the second string,
       // pass
-      return test.substr(testFrom) === "." + against;
+      return test.substr(testFrom) === '.' + against;
     }
   }
 }
@@ -311,12 +311,12 @@ function isLocationBlocked(location) {
 }
 
 function executeInTabIfBlocked(action, tab) {
-  var file = "content_scripts/" + action + ".js",
+  var file = 'content_scripts/' + action + '.js',
     location;
-  location = tab.url.split("://");
+  location = tab.url.split('://');
   location = parseLocation(location[1]);
 
-  if (location.domain !== "" && isLocationBlocked(location)) {
+  if (location.domain !== '' && isLocationBlocked(location)) {
     chrome.tabs.executeScript(tab.id, { file: file });
   }
 }
@@ -338,21 +338,21 @@ function setModes(self) {
     self.short_break_counter = newVal;
   }
 
-  if (typeof self.short_break_counter === "undefined")
+  if (typeof self.short_break_counter === 'undefined')
     self.short_break_counter = 0;
 
-  if (self.mostRecentMode == "work") {
+  if (self.mostRecentMode == 'work') {
     if (self.short_break_counter >= 3) {
-      self.nextMode = "long_break";
+      self.nextMode = 'long_break';
       setShortBreakCounter(0);
-      console.log("Start long break");
+      console.log('Start long break');
     } else {
-      self.nextMode = "break";
+      self.nextMode = 'break';
       setShortBreakCounter(self.short_break_counter + 1);
-      console.log("Start break", self.short_break_counter);
+      console.log('Start break', self.short_break_counter);
     }
   } else {
-    self.nextMode = "work";
+    self.nextMode = 'work';
   }
 }
 
@@ -368,8 +368,8 @@ var notification,
     timer: {
       onEnd: function (timer) {
         var key = date2string(new Date());
-        if (timer.type == "work" && timer.timeRemaining > -16) {
-          console.log("Finished working");
+        if (timer.type == 'work' && timer.timeRemaining > -16) {
+          console.log('Finished working');
           if (PREFS.sessions[key]) {
             PREFS.sessions[key] += 1;
           } else {
@@ -378,25 +378,25 @@ var notification,
           savePrefs(PREFS);
         }
 
-        if (PREFS.shouldBGM && timer.type == "work") {
-          console.log("BGM paused", BGM, timer.type);
+        if (PREFS.shouldBGM && timer.type == 'work') {
+          console.log('BGM paused', BGM, timer.type);
           BGM.pause();
         }
 
         chrome.browserAction.setIcon({
           path: ICONS.ACTION.PENDING[getIconMode(timer.pomodoro.nextMode)],
         });
-        chrome.browserAction.setBadgeText({ text: "" });
+        chrome.browserAction.setBadgeText({ text: '' });
 
         if (PREFS.showNotifications) {
           var nextModeName = chrome.i18n.getMessage(timer.pomodoro.nextMode);
           chrome.notifications.create(
-            "notification",
+            'notification',
             {
-              type: "basic",
-              title: chrome.i18n.getMessage("timer_end_notification_header"),
+              type: 'basic',
+              title: chrome.i18n.getMessage('timer_end_notification_header'),
               message: chrome.i18n.getMessage(
-                "timer_end_notification_body",
+                'timer_end_notification_body',
                 nextModeName
               ),
               priority: 2,
@@ -406,18 +406,18 @@ var notification,
           );
           chrome.notifications.onClicked.addListener(function () {
             startPomodoro();
-            chrome.notifications.clear("notification");
+            chrome.notifications.clear('notification');
           });
         }
 
         if (PREFS.shouldRing) {
-          console.log("playing ring", RING);
+          console.log('playing ring', RING);
           RING.play();
         }
         if (PREFS.shouldNewtab) {
-          console.log("open new tab");
+          console.log('open new tab');
           // OPEN NEW TAB
-          chrome.tabs.create({ url: "modules/notice.html", active: true });
+          chrome.tabs.create({ url: 'modules/notice.html', active: true });
         }
       },
       onStart: function (timer) {
@@ -427,23 +427,23 @@ var notification,
         chrome.browserAction.setBadgeBackgroundColor({
           color: BADGE_BACKGROUND_COLORS[getIconMode(timer.type)],
         });
-        if (timer.type == "work") {
-          executeInAllBlockedTabs("block");
+        if (timer.type == 'work') {
+          executeInAllBlockedTabs('block');
         } else {
-          executeInAllBlockedTabs("unblock");
+          executeInAllBlockedTabs('unblock');
         }
         if (notification) notification.cancel();
-        var tabViews = chrome.extension.getViews({ type: "tab" }),
+        var tabViews = chrome.extension.getViews({ type: 'tab' }),
           tab;
         for (var i in tabViews) {
           tab = tabViews[i];
-          if (typeof tab.startCallbacks !== "undefined") {
+          if (typeof tab.startCallbacks !== 'undefined') {
             tab.startCallbacks[timer.type]();
           }
         }
 
-        if (PREFS.shouldBGM && timer.type == "work") {
-          console.log("playing BGM", BGM, timer.type);
+        if (PREFS.shouldBGM && timer.type == 'work') {
+          console.log('playing BGM', BGM, timer.type);
           BGM.play();
         }
       },
@@ -456,7 +456,7 @@ var notification,
   });
 
 function getIconMode(timerState) {
-  return timerState == "work" ? "work" : "break";
+  return timerState == 'work' ? 'work' : 'break';
 }
 
 chrome.browserAction.onClicked.addListener(function () {
@@ -481,14 +481,14 @@ function session_count() {
 }
 
 function session_clear(key) {
-  if (typeof key === "undefined") key = date2string(new Date());
+  if (typeof key === 'undefined') key = date2string(new Date());
   return delete PREFS.sessions[key];
 }
 /* eslint-enable */
 
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
-  if (mainPomodoro.mostRecentMode == "work") {
-    executeInTabIfBlocked("block", tab);
+  if (mainPomodoro.mostRecentMode == 'work') {
+    executeInTabIfBlocked('block', tab);
   }
 });
 
@@ -501,8 +501,8 @@ chrome.notifications.onClicked.addListener(function () {
 });
 
 var skipModeStrict = function () {
-  if (mainPomodoro.mostRecentMode == "work" && mainPomodoro.running) {
-    console.log("skip failed: working time");
+  if (mainPomodoro.mostRecentMode == 'work' && mainPomodoro.running) {
+    console.log('skip failed: working time');
   } else if (!mainPomodoro.running) {
     startPomodoro();
   } else {
@@ -511,7 +511,7 @@ var skipModeStrict = function () {
 };
 
 chrome.contextMenus.create({
-  title: chrome.i18n.getMessage("skip"),
-  contexts: ["browser_action"],
+  title: chrome.i18n.getMessage('skip'),
+  contexts: ['browser_action'],
   onclick: skipModeStrict,
 });
