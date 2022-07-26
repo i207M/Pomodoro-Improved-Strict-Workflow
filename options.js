@@ -78,6 +78,8 @@ form.onsubmit = function () {
     sessions: background.PREFS.sessions,
     goal: goalEl.value,
     shouldNewtab: shouldNewtabEl.checked,
+    totalNumber: background.PREFS.totalNumber,
+    totalTime: background.PREFS.totalTime,
   });
   saveSuccessfulEl.className = 'show';
   return false;

@@ -60,7 +60,10 @@ function loadPrefs() {
   if (typeof localStorage['prefs'] !== 'undefined') {
     return updatePrefsFormat(JSON.parse(localStorage['prefs']));
   } else {
-    chrome.tabs.create({ url: 'options.html', active: true });
+    setTimeout(
+      () => chrome.tabs.create({ url: 'options.html', active: true }),
+      1000
+    );
     return savePrefs(defaultPrefs());
   }
 }
