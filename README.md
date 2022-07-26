@@ -28,7 +28,7 @@ Otherwise:
 
 ## TODO
 
-- You tell me
+- Migrating to Manifest V3
 
 ---
 
