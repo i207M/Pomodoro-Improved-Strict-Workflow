@@ -1,18 +1,18 @@
-"use strict";
+'use strict';
 /*
   Localization
 */
 
 // Localize all elements with a data-i18n="message_name" attribute
-var localizedElements = document.querySelectorAll("[data-i18n]"),
+var localizedElements = document.querySelectorAll('[data-i18n]'),
   el,
   message;
 for (var i = 0; i < localizedElements.length; i++) {
   el = localizedElements[i];
-  message = chrome.i18n.getMessage(el.getAttribute("data-i18n"));
+  message = chrome.i18n.getMessage(el.getAttribute('data-i18n'));
 
   // Capitalize first letter if element has attribute data-i18n-caps
-  if (el.hasAttribute("data-i18n-caps")) {
+  if (el.hasAttribute('data-i18n-caps')) {
     message = message.charAt(0).toUpperCase() + message.substr(1);
   }
 
@@ -23,29 +23,29 @@ for (var i = 0; i < localizedElements.length; i++) {
   Form interaction
 */
 
-var form = document.getElementById("options-form"),
-  siteListEl = document.getElementById("site-list"),
-  whitelistEl = document.getElementById("blacklist-or-whitelist"),
-  showNotificationsEl = document.getElementById("show-notifications"),
-  shouldRingEl = document.getElementById("should-ring"),
-  shouldBGMEl = document.getElementById("should-BGM"),
-  clickRestartsEl = document.getElementById("click-restarts"),
-  saveSuccessfulEl = document.getElementById("save-successful"),
-  timeFormatErrorEl = document.getElementById("time-format-error"),
-  goalEl = document.getElementById("goal"),
-  shouldNewtabEl = document.getElementById("should-newtab"),
+var form = document.getElementById('options-form'),
+  siteListEl = document.getElementById('site-list'),
+  whitelistEl = document.getElementById('blacklist-or-whitelist'),
+  showNotificationsEl = document.getElementById('show-notifications'),
+  shouldRingEl = document.getElementById('should-ring'),
+  shouldBGMEl = document.getElementById('should-BGM'),
+  clickRestartsEl = document.getElementById('click-restarts'),
+  saveSuccessfulEl = document.getElementById('save-successful'),
+  timeFormatErrorEl = document.getElementById('time-format-error'),
+  goalEl = document.getElementById('goal'),
+  shouldNewtabEl = document.getElementById('should-newtab'),
   background = chrome.extension.getBackgroundPage(),
   startCallbacks = {},
   durationEls = {};
 
-durationEls["work"] = document.getElementById("work-duration");
-durationEls["break"] = document.getElementById("break-duration");
-durationEls["long_break"] = document.getElementById("long-break-duration");
+durationEls['work'] = document.getElementById('work-duration');
+durationEls['break'] = document.getElementById('break-duration');
+durationEls['long_break'] = document.getElementById('long-break-duration');
 
 var TIME_REGEX = /^([0-9]+)(:([0-9]{2}))?$/;
 
 form.onsubmit = function () {
-  console.log("form submitted");
+  console.log('form submitted');
   var durations = {},
     durationStr,
     durationMatch;
@@ -60,7 +60,7 @@ form.onsubmit = function () {
         durations[key] += parseInt(durationMatch[3], 10);
       }
     } else {
-      timeFormatErrorEl.className = "show";
+      timeFormatErrorEl.className = 'show';
       return false;
     }
   }
@@ -79,7 +79,7 @@ form.onsubmit = function () {
     goal: goalEl.value,
     shouldNewtab: shouldNewtabEl.checked,
   });
-  saveSuccessfulEl.className = "show";
+  saveSuccessfulEl.className = 'show';
   return false;
 };
 
@@ -93,11 +93,11 @@ whitelistEl.onchange = formAltered;
 shouldNewtabEl.onchange = formAltered;
 
 function formAltered() {
-  saveSuccessfulEl.removeAttribute("class");
-  timeFormatErrorEl.removeAttribute("class");
+  saveSuccessfulEl.removeAttribute('class');
+  timeFormatErrorEl.removeAttribute('class');
 }
 
-siteListEl.value = background.PREFS.siteList.join("\n");
+siteListEl.value = background.PREFS.siteList.join('\n');
 goalEl.value = background.PREFS.goal;
 showNotificationsEl.checked = background.PREFS.showNotifications;
 shouldRingEl.checked = background.PREFS.shouldRing;
@@ -112,9 +112,9 @@ for (var key in durationEls) {
   seconds = duration % 60;
   minutes = (duration - seconds) / 60;
   if (seconds >= 10) {
-    durationEls[key].value = minutes + ":" + seconds;
+    durationEls[key].value = minutes + ':' + seconds;
   } else if (seconds > 0) {
-    durationEls[key].value = minutes + ":0" + seconds;
+    durationEls[key].value = minutes + ':0' + seconds;
   } else {
     durationEls[key].value = minutes;
   }
@@ -131,31 +131,34 @@ function setInputDisabled(state) {
 }
 
 startCallbacks.work = function () {
-  document.body.className = "work";
+  document.body.className = 'work';
   setInputDisabled(true);
 };
 
 startCallbacks.break = function () {
-  document.body.removeAttribute("class");
+  document.body.removeAttribute('class');
   setInputDisabled(false);
 };
 
 startCallbacks.long_break = function () {
-  document.body.removeAttribute("class");
+  document.body.removeAttribute('class');
   setInputDisabled(false);
 };
 
-var daily_count = document.getElementById("daily-count");
+var daily_count = document.getElementById('daily-count');
 var session_str = JSON.stringify(background.PREFS.sessions);
 var count_list = session_str
   .substring(1, session_str.length - 1)
-  .replace(/"/g, "")
-  .replace(/:/g, ": ")
-  .split(",")
+  .replace(/"/g, '')
+  .replace(/:/g, ': ')
+  .split(',')
   .sort()
-  .join("<br>");
-daily_count.innerHTML = count_list;
+  .join('<br>');
+daily_count.innerHTML =
+  `Counter: ${background.PREFS.totalNumber.toFixed(0)}<br>` +
+  `Total time: ${background.PREFS.totalTime.toFixed(0)} min<br>` +
+  count_list;
 
-if (background.mainPomodoro.mostRecentMode == "work") {
+if (background.mainPomodoro.mostRecentMode == 'work') {
   startCallbacks.work();
 }

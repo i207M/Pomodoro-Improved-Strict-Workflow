@@ -51,6 +51,8 @@ function defaultPrefs() {
     sessions: {},
     goal: 16,
     shouldNewtab: false,
+    totalTime: 0,
+    totalNumber: 0,
   };
 }
 
@@ -97,6 +99,17 @@ function updatePrefsFormat(prefs) {
     // Upon adding the shouldNewtab
     // default: false
     prefs.shouldNewtab = false;
+    savePrefs(prefs);
+  }
+
+  if (
+    !Object.prototype.hasOwnProperty.call(prefs, 'totalNumber') ||
+    !Object.prototype.hasOwnProperty.call(prefs, 'totalTime')
+  ) {
+    // Upon adding the totalNumber
+    // default: false
+    prefs.totalNumber = 0;
+    prefs.totalTime = 0;
     savePrefs(prefs);
   }
 
@@ -375,6 +388,8 @@ var notification,
           } else {
             PREFS.sessions[key] = 1;
           }
+          PREFS.totalNumber += 1;
+          PREFS.totalTime += PREFS.durations['work'] / 60;
           savePrefs(PREFS);
         }
 
